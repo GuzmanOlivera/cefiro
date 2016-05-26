@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tryton>
+    <data skiptest="1">
+
+
+        <record id="seq_type_cefiro_paciente" model="ir.sequence.type">
+            <field name="name">Paciente</field>
+            <field name="code">cefiro.paciente</field>
+        </record>
+        <record id="seq_cefiro_paciente" model="ir.sequence">
+            <field name="name">Paciente</field>
+            <field name="code">cefiro.paciente</field>
+            <field name="prefix">Paciente</field>
+            <field name="padding">6</field>
+        </record>
+
+        <record model="ir.property" id="property_party_sequence">
+            <field name="field"
+                search="[('model.model', '=', 'cefiro.sec'), ('name', '=', 'numeropaciente')]"/>
+            <field name="value" eval="'ir.sequence,' + str(ref('seq_cefiro_paciente'))"/>
+        </record>
+
+    </data>
+</tryton>
+
+

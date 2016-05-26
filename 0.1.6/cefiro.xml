@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tryton>
+	<data>
+
+<!-- Cargo algunos íconos -->
+        <record model="ir.ui.icon" id="cefiro_icono_freud">
+            <field name="name">cefiro-freud2</field>
+            <field name="path">iconos/freud.svg</field>
+        </record>
+        <record model="ir.ui.icon" id="cefiro_icono_cefiro">
+            <field name="name">cefiro-cefiro2</field>
+            <field name="path">iconos/cefiro2.svg</field>
+        </record>
+        <record model="ir.ui.icon" id="cefiro_icono_paciente">
+            <field name="name">cefiro-paciente</field>
+            <field name="path">iconos/paciente.svg</field>
+        </record>
+        <record model="ir.ui.icon" id="cefiro_icono_agenda">
+            <field name="name">cefiro-agenda</field>
+            <field name="path">iconos/agenda.svg</field>
+        </record>
+        <record model="ir.ui.icon" id="cefiro_icono_personal">
+            <field name="name">cefiro-personal</field>
+            <field name="path">iconos/personal.svg</field>
+        </record>
+        <record model="ir.ui.icon" id="cefiro_icono_estudiante">
+            <field name="name">cefiro-estudiante</field>
+            <field name="path">iconos/estudiante.svg</field>
+        </record>
+        <record model="ir.ui.icon" id="cefiro_icono_consultorio">
+            <field name="name">cefiro-consultorio</field>
+            <field name="path">iconos/consultorio.svg</field>
+        </record>
+
+
+<!-- El menú principal -->
+	<menuitem name="Céfiro" id="menu_cefiro" icon="cefiro-cefiro2"/>
+
+<!-- Submenús -->
+	<menuitem name="Personal" parent="menu_cefiro" id="menu_personal" icon="cefiro-personal"/>
+	<menuitem name="Agenda" parent="menu_cefiro" id="menu_agenda" icon="cefiro-agenda"/>
+
+
+<!-- Cosas asociadas a la clase Psicologo -->
+
+<!-- Vista de arbol -->
+<record model="ir.ui.view" id="psicologo_view_tree">
+	<field name="model">cefiro.psicologo</field>
+	<field name="type">tree</field>
+	<field name="arch" type="xml">
+		<![CDATA[
+		<tree string="psicologos">
+			<field name="name"/>
+			<field name="cedula"/>
+			<field name="mail"/>
+			<field name="telefono"/>
+			<field name="consultas"/>
+		</tree>
+		]]>
+	</field>
+</record>
+
+<!-- Vista de formulario -->
+<record model="ir.ui.view" id="psicologo_view_form">
+	<field name="model">cefiro.psicologo</field>
+	<field name="type">form</field>
+	<field name="arch" type="xml">
+		<![CDATA[
+		<form string="psico">
+			<group string="Datos Personales" colspan="4" id="psicobasicos">
+				<label name="name"/>
+				<field name="name"/>			
+				<label name="login"/>
+				<field name="login"/>
+				<label name="password"/>
+				<field name="password"/>
+				<label name="confirmacionInterno"/>
+				<field name="confirmacionInterno"/>
+				<label name="cedula"/>
+				<field name="cedula"/>
+				<label name="mail"/>
+				<field name="mail"/>
+				<label name="telefono"/>
+				<field name="telefono"/>
+			</group>
+			<group string="Actividad" colspan="4" id="basicos" yfill="1" yexpand="1">
+				<label name="pacientes"/>
+				<field name="pacientes"/>
+				<label name="consultas"/>
+				<field name="consultas"/>			
+			</group>
+		</form>
+		]]>
+	</field>
+</record>
+
+<!-- Evento que activa las vistas -->
+<record model="ir.action.act_window" id="act_psicologo_form">
+	<field name="name">Psicólogos</field>
+	<field name="res_model">cefiro.psicologo</field>
+	<!--<field name="domain">[('login','=',Eval('_login'))]</field>-->
+</record>
+
+<!-- Conexion entre el evento y la vista de arbol -->
+<record model="ir.action.act_window.view" id="act_psicologo_form_view1">
+	<field name="sequence" eval="10"/>
+	<field name="view" ref="psicologo_view_tree"/>
+	<field name="act_window" ref="act_psicologo_form"/>
+</record>
+
+<!-- Conexion entre el evento y la vista de formulario -->
+<record model="ir.action.act_window.view" id="act_psicologo_form_view2">
+	<field name="sequence" eval="20"/>
+	<field name="view" ref="psicologo_view_form"/>
+	<field name="act_window" ref="act_psicologo_form"/>
+</record>
+
+<!-- Menu -->
+<menuitem parent="menu_personal" sequence="1" id="menu_psicologo" icon="cefiro-freud2" action="act_psicologo_form"/>
+
+<!-- Cosas asociadas a la clase Consulta -->
+
+<!-- Vista de arbol -->
+<record model="ir.ui.view" id="consulta_view_tree">
+	<field name="model">cefiro.consulta</field>
+	<field name="type">tree</field>
+	<field name="arch" type="xml">
+		<![CDATA[
+		<tree string="consultas">
+			<field name="horaini"/>
+			<field name="horaFin"/>
+			<field name="consultorio"/>
+			<field name="psicologos"/>
+			<field name="pacientes"/>
+			<field name="estudiantes"/>
+		</tree>
+		]]>
+	</field>
+</record>
+
+<!-- Vista de formulario -->
+<record model="ir.ui.view" id="consulta_view_form">
+	<field name="model">cefiro.consulta</field>
+	<field name="type">form</field>
+	<field name="arch" type="xml">
+		<![CDATA[
+		<form string="consulta">
+			<group id="datos" yexpand="1" yfill="1">
+				<label name="horaini"/>
+				<field name="horaini"/>
+				<newline/>
+				<label name="horaFin"/>
+				<field name="horaFin"/>
+				<newline/>
+				<label name="consulLibres"/>
+				<field name="consulLibres"/>
+				<label name="consultorio"/>
+				<field name="consultorio"/>
+			</group>
+			<newline/>
+			<group id="personas" col="24" yexpand="1" yfill="1">
+				<label name="psicologos"/>
+				<field name="psicologos"/>
+				<label name="pacientes"/>
+				<field name="pacientes"/>
+				<label name="estudiantes"/>
+				<field name="estudiantes"/>
+			</group>
+		</form>
+		]]>
+	</field>
+</record>
+
+<!-- Evento que activa las vistas -->
+<record model="ir.action.act_window" id="act_consultas_form">
+	<field name="name">Consultas</field>
+	<field name="res_model">cefiro.consulta</field>
+</record>
+
+<!-- Conexion entre el evento y la vista de arbol -->
+<record model="ir.action.act_window.view" id="act_consultas_form_view1">
+	<field name="sequence" eval="10"/>
+	<field name="view" ref="consulta_view_tree"/>
+	<field name="act_window" ref="act_consultas_form"/>
+</record>
+
+<!-- Conexion entre el evento y la vista de formulario -->
+<record model="ir.action.act_window.view" id="act_consulta_form_view2">
+	<field name="sequence" eval="20"/>
+	<field name="view" ref="consulta_view_form"/>
+	<field name="act_window" ref="act_consultas_form"/>
+</record>
+
+<!-- Menu -->
+<menuitem parent="menu_agenda" sequence="1" id="menu_consultas" icon="tryton-list" action="act_consultas_form"/>
+
+
+<!-- Cosas asociadas a la clase Estudiante -->
+
+<!-- Vista de arbol -->
+<record model="ir.ui.view" id="estudiante_view_tree">
+	<field name="model">cefiro.estudiante</field>
+	<field name="type">tree</field>
+	<field name="arch" type="xml">
+		<![CDATA[
+		<tree string="estudiantes">
+			<field name="name"/>
+			<field name="cedula"/>
+			<field name="mail"/>
+			<field name="telefono"/>
+			<field name="consultas"/>
+		</tree>
+		]]>
+	</field>
+</record>
+
+<!-- Vista de formulario -->
+<record model="ir.ui.view" id="estudiante_view_form">
+	<field name="model">cefiro.estudiante</field>
+	<field name="type">form</field>
+	<field name="arch" type="xml">
+		<![CDATA[
+		<form string="estudiante">
+			<label name="name"/>
+			<field name="name"/>
+			<label name="cedula"/>
+			<field name="cedula"/>
+			<label name="mail"/>
+			<field name="mail"/>
+			<label name="telefono"/>
+			<field name="telefono"/>
+			<label name="consultas"/>
+			<field name="consultas"/>
+		</form>
+		]]>
+	</field>
+</record>
+
+<!-- Evento que activa las vistas -->
+<record model="ir.action.act_window" id="act_estudiante_form">
+	<field name="name">Estudiantes</field>
+	<field name="res_model">cefiro.estudiante</field>
+</record>
+
+<!-- Conexion entre el evento y la vista de arbol -->
+<record model="ir.action.act_window.view" id="act_estudiante_form_view1">
+	<field name="sequence" eval="10"/>
+	<field name="view" ref="estudiante_view_tree"/>
+	<field name="act_window" ref="act_estudiante_form"/>
+</record>
+
+<!-- Conexion entre el evento y la vista de formulario -->
+<record model="ir.action.act_window.view" id="act_estudiante_form_view2">
+	<field name="sequence" eval="20"/>
+	<field name="view" ref="estudiante_view_form"/>
+	<field name="act_window" ref="act_estudiante_form"/>
+</record>
+
+<!-- Menu -->
+<menuitem parent="menu_personal" sequence="1" id="menu_estudiante" icon="cefiro-estudiante" action="act_estudiante_form"/>
+
+
+<!-- Cosas asociadas a la clase Consultorio -->
+
+<!-- Vista de arbol -->
+<record model="ir.ui.view" id="consultorio_view_tree">
+	<field name="model">cefiro.consultorio</field>
+	<field name="type">tree</field>
+	<field name="arch" type="xml">
+		<![CDATA[
+		<tree string="consultorios">
+			<field name="name"/>
+			<field name="consultas"/>
+		</tree>
+		]]>
+	</field>
+</record>
+
+<!-- Vista de formulario -->
+<record model="ir.ui.view" id="consultorio_view_form">
+	<field name="model">cefiro.consultorio</field>
+	<field name="type">form</field>
+	<field name="arch" type="xml">
+		<![CDATA[
+		<form string="consultorios">
+			<label name="name"/>
+			<field name="name"/>
+			<label name="consultas"/>
+			<field name="consultas"/>
+			<label name="ocupado"/>
+			<field name="ocupado"/>
+		</form>
+		]]>
+	</field>
+</record>
+
+<!-- Evento que activa las vistas -->
+<record model="ir.action.act_window" id="act_consultorio_form">
+	<field name="name">Consultorios</field>
+	<field name="res_model">cefiro.consultorio</field>
+</record>
+
+<!-- Conexion entre el evento y la vista de arbol -->
+<record model="ir.action.act_window.view" id="act_consultorio_form_view1">
+	<field name="sequence" eval="10"/>
+	<field name="view" ref="consultorio_view_tree"/>
+	<field name="act_window" ref="act_consultorio_form"/>
+</record>
+
+<!-- Conexion entre el evento y la vista de formulario -->
+<record model="ir.action.act_window.view" id="act_consultorio_form_view2">
+	<field name="sequence" eval="20"/>
+	<field name="view" ref="consultorio_view_form"/>
+	<field name="act_window" ref="act_consultorio_form"/>
+</record>
+
+<!-- Menu -->
+<menuitem parent="menu_cefiro" sequence="1" id="menu_consultorio" icon="cefiro-consultorio" action="act_consultorio_form"/>
+
+
+<!-- Cosas asociadas a la clase Reserva -->
+
+<!-- Vista de arbol -->
+<record model="ir.ui.view" id="reserva_view_tree">
+	<field name="model">cefiro.reserva</field>
+	<field name="type">tree</field>
+	<field name="arch" type="xml">
+		<![CDATA[
+		<tree string="reservas">
+			<field name="horaIni"/>
+			<field name="horaFin"/>
+			<field name="consulLibres"/>
+		</tree>
+		]]>
+	</field>
+</record>
+
+<!-- Vista de formulario -->
+<record model="ir.ui.view" id="reserva_view_form">
+	<field name="model">cefiro.reserva</field>
+	<field name="type">form</field>
+	<field name="arch" type="xml">
+		<![CDATA[
+		<form string="reservas">
+			<label name="debug"/>
+			<field name="debug"/>
+			<label name="horaIni"/>
+			<field name="horaIni"/>
+			<label name="horaFin"/>
+			<field name="horaFin"/>
+			<label name="consultorio"/>
+			<field name="consultorio"/>
+		</form>
+		]]>
+	</field>
+</record>
+
+<!-- Evento que activa las vistas -->
+<record model="ir.action.act_window" id="act_reserva_form">
+	<field name="name">Reservas</field>
+	<field name="res_model">cefiro.reserva</field>
+</record>
+
+<!-- Conexion entre el evento y la vista de arbol -->
+<record model="ir.action.act_window.view" id="act_reserva_form_view1">
+	<field name="sequence" eval="10"/>
+	<field name="view" ref="reserva_view_tree"/>
+	<field name="act_window" ref="act_reserva_form"/>
+</record>
+
+<!-- Conexion entre el evento y la vista de formulario -->
+<record model="ir.action.act_window.view" id="act_reserva_form_view2">
+	<field name="sequence" eval="20"/>
+	<field name="view" ref="reserva_view_form"/>
+	<field name="act_window" ref="act_reserva_form"/>
+</record>
+
+<!-- Menu -->
+<menuitem parent="menu_agenda" sequence="2" id="menu_reserva" icon="tryton-list" action="act_reserva_form"/>
+
+
+	</data>
+</tryton>
+
+
