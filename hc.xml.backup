@@ -1,0 +1,1637 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tryton>
+	<data>
+
+<!-- El menú principal -->
+	<!--<menuitem name="Historias Clínicas" parent="menu_cefiro" id="menu_hc"/>-->
+
+
+<!-- Cosas asociadas a la clase Formulario -->
+
+<!-- Vista de arbol -->
+<record model="ir.ui.view" id="formulario_view_tree">
+	<field name="model">cefiro.formulario</field>
+	<field name="type">tree</field>
+	<field name="arch" type="xml">
+		<![CDATA[
+		<tree string="formulario">
+			<field name="fecha"/>
+			<field name="tipoConsulta"/>
+		</tree>
+		]]>
+	</field>
+</record>
+
+<!-- Vista de formulario -->
+<record model="ir.ui.view" id="formulario_view_form">
+	<field name="model">cefiro.formulario</field>
+	<field name="type">form</field>
+	<field name="arch" type="xml">
+		<![CDATA[
+		<form string="formulario">
+			<notebook>
+
+			<page string="Principal" id="principal">
+				<group id="princbasico">
+					<label name="fecha"/>
+					<field name="fecha"/>
+				</group>
+				<newline/>
+	
+				<group string="Tipo de Consulta" id="tipo">
+					<label name="tipoConsulta"/>
+					<field name="tipoConsulta"/> 
+					<label name="derivador"/>
+					<field name="derivador"/>
+					<label name="derivEspec"/>
+					<field name="derivEspec"/>
+					<newline/>
+					<label name="acompanante"/>
+					<field name="acompanante"/>
+				</group>
+
+				<newline/>
+				<group string="Motivo de Consulta" id="motivo" yfill="1" yexpand="1" xfill="1" xexpand="1">
+					<label name="motivoPaciente1"/>
+					<field name="motivoPaciente1"/>
+					<label name="motivoPaciente1Cod"/>
+					<field name="motivoPaciente1Cod"/>
+					<label name="motivoPaciente2"/>
+					<field name="motivoPaciente2"/>
+					<label name="motivoPaciente2Cod"/>
+					<field name="motivoPaciente2Cod"/>
+					<label name="motivoPaciente3"/>
+					<field name="motivoPaciente3"/>
+					<label name="motivoPaciente3Cod"/>
+					<field name="motivoPaciente3Cod"/>
+
+					<label name="motivoAcompa1"/>
+					<field name="motivoAcompa1"/>
+					<label name="motivoAcompa1Cod"/>
+					<field name="motivoAcompa1Cod"/>
+					<label name="motivoAcompa2"/>
+					<field name="motivoAcompa2"/>
+					<label name="motivoAcompa2Cod"/>
+					<field name="motivoAcompa2Cod"/>
+					<label name="motivoAcompa3"/>
+					<field name="motivoAcompa3"/>
+					<label name="motivoAcompa3Cod"/>
+					<field name="motivoAcompa3Cod"/>
+
+					<label name="motivoPsico1"/>
+					<field name="motivoPsico1"/>
+					<label name="motivoPsico1Cod"/>
+					<field name="motivoPsico1Cod"/>
+					<label name="motivoPsico2"/>
+					<field name="motivoPsico2"/>
+					<label name="motivoPsico2Cod"/>
+					<field name="motivoPsico2Cod"/>
+					<label name="motivoPsico3"/>
+					<field name="motivoPsico3"/>
+					<label name="motivoPsico3Cod"/>
+					<field name="motivoPsico3Cod"/>
+					<newline/>
+					<separator id="preComplementaria" xfill="1" xexpand="1" colspan="8"/>
+					<newline/>
+
+					<label name="motivoComplementaria"/>
+					<field name="motivoComplementaria" xfill="1" xexpand="1" yfill="1" yexpand="1" colspan="8"/>
+				</group>
+			</page>
+
+
+			<page string="Vivienda y Trabajo" id="vivytrab">
+	
+				<group string="Situación Familiar y Conyugal" id="conyugal">
+					<group id="conviveSolo">
+						<label name="conviveSolo" colspan="1"/>
+						<field name="conviveSolo" colspan="1"/>
+					</group>
+					<newline/>
+					<group string="¿Con quién convive?" id="convivencia"  xexpand="1" xfill="1" col="16"
+						states="{'invisible': 
+								Not(Equal(Eval('conviveSolo'),'no'))
+						}">
+						<label name="conviveMadre" colspan="1"/>
+						<field name="conviveMadre" colspan="1"/>
+						<label name="convivePadre" colspan="1"/>
+						<field name="convivePadre" colspan="1"/>
+						<label name="conviveMadrastra" colspan="1"/>
+						<field name="conviveMadrastra" colspan="1"/>
+						<label name="convivePadrastro" colspan="1"/>
+						<field name="convivePadrastro" colspan="1"/>
+						<label name="conviveHermanos" colspan="1"/>
+						<field name="conviveHermanos" colspan="1"/>
+						<label name="convivePareja" colspan="1"/>
+						<field name="convivePareja" colspan="1"/>
+						<label name="conviveHijos" colspan="1"/>
+						<field name="conviveHijos" colspan="1"/>
+						<label name="conviveOtros" colspan="1"/>
+						<field name="conviveOtros" colspan="1"/>
+					</group>
+					<newline/>
+					<group id="restovivytrab">
+						<label name="situacionCony"/>
+						<field name="situacionCony"/>
+						<label name="tipoVivienda"/>
+						<field name="tipoVivienda"/>
+					</group>
+				</group>
+
+				<newline/>
+
+				<group string="Vivienda" id="vivienda">
+					<label name="vivHabitaTot"/>
+					<field name="vivHabitaTot"/>
+					<label name="vivHabitaDor"/>
+					<field name="vivHabitaDor"/>
+					<label name="vivBanos"/>
+					<field name="vivBanos"/>
+					<label name="vivBanoComp"/>
+					<field name="vivBanoComp"/>
+					<label name="vivBanoTipo"/>
+					<field name="vivBanoTipo"/>
+					<newline/>
+					<label name="vivEnergiaElectrica"/>
+					<field name="vivEnergiaElectrica"/>
+					<label name="vivAguaPotable"/>
+					<field name="vivAguaPotable"/>
+					<newline/>
+					<label name="vivObs" xalign="0.0"/>
+					<field name="vivObs" colspan="8" yfill="1" yexpand="1"/>
+				</group>
+
+				<newline/>
+
+				<group string="Trabajo" id="trabajo" yfill="1">
+					<label name="trabSituacion"/>
+					<field name="trabSituacion"/>
+					<label name="trabTipoRel"/>
+					<field name="trabTipoRel"/>
+					<label name="trabMulti"/>
+					<field name="trabMulti"/>
+					<newline/>
+					<label name="trabHoras"/>
+					<field name="trabHoras"/>
+					<label name="trabHorasPrin"/>
+					<field name="trabHorasPrin"/>
+					<label name="trabInicio"/>
+					<field name="trabInicio"/>
+					<newline/>
+					<label name="trabInfantil"/>
+					<field name="trabInfantil"/>
+					<label name="trabJuvenil"/>
+					<field name="trabJuvenil"/>
+					<label name="trabLegal"/>
+					<field name="trabLegal"/>
+					<label name="trabInsalubre"/>
+					<field name="trabInsalubre"/>
+					<newline/>
+					<label name="trabObs" xalign="0.0"/>
+					<field name="trabObs" colspan="8" yfill="1" yexpand="1"/>
+				</group>
+
+				<newline/>
+
+				<group string="Situación Laboral Familiar" id="edufamilia" xexpand="1" xfill="1">
+					<label name="trabPadre"/>
+					<field name="trabPadre"/>
+					<label name="trabMadre"/>
+					<field name="trabMadre"/>
+					<label name="trabPareja"/>
+					<field name="trabPareja"/>
+
+				</group>
+
+			</page>
+
+			<page string="Educación" id="educacion">
+				<group string="EDUCACION FORMAL" id="eduformal">
+					<group id="basico" col="2">
+						<label name="eduFormalNivel"/>
+						<field name="eduFormalNivel"/>
+						<newline/>
+						<label name="eduFormalNivelMax"/>
+						<field name="eduFormalNivelMax"/>
+					</group>
+					<newline/>
+					<group string="Primaria" id="eduforprim" xexpand="1" xfill="1" 
+						states="{'invisible': And(
+
+						Not(Equal(Eval('eduFormalNivel'),'pri')),
+						Not(Equal(Eval('eduFormalNivel'),'sec')),
+						Not(Equal(Eval('eduFormalNivel'),'terc')),
+						Not(Equal(Eval('eduFormalNivel'),'uni')),
+
+						Not(Equal(Eval('eduFormalNivel'),'priInc')),
+						Not(Equal(Eval('eduFormalNivel'),'secInc')),
+						Not(Equal(Eval('eduFormalNivel'),'tercInc')),
+						Not(Equal(Eval('eduFormalNivel'),'uniInc'))
+
+						)
+
+								
+						}">
+						<label name="eduCentrosPrimaria"/>
+						<field name="eduCentrosPrimaria"/>
+						<label name="eduPubliPrimaria"/>
+						<field name="eduPubliPrimaria"/>
+						<label name="eduDifPrimaria"/>
+						<field name="eduDifPrimaria"/>
+						<label name="eduDifTipoPrimaria"/>
+						<field name="eduDifTipoPrimaria"/>
+						<label name="eduRepePrimaria"/>
+						<field name="eduRepePrimaria"/>
+						<label name="eduRepeCausaPrimaria"/>
+						<field name="eduRepeCausaPrimaria"/>
+						<label name="eduDeserPrimaria"/>
+						<field name="eduDeserPrimaria"/>
+					</group>
+
+   					<newline/>
+
+					<group string="Secundaria" id="eduforsecun" xexpand="1" xfill="1"
+						states="{'invisible': And(
+
+						Not(Equal(Eval('eduFormalNivel'),'sec')),
+						Not(Equal(Eval('eduFormalNivel'),'terc')),
+						Not(Equal(Eval('eduFormalNivel'),'uni')),
+
+						Not(Equal(Eval('eduFormalNivel'),'secInc')),
+						Not(Equal(Eval('eduFormalNivel'),'tercInc')),
+						Not(Equal(Eval('eduFormalNivel'),'uniInc'))
+
+						)}">
+						<label name="eduCentrosSecundaria"/>
+						<field name="eduCentrosSecundaria"/>
+						<label name="eduPubliSecundaria"/>
+						<field name="eduPubliSecundaria"/>
+						<label name="eduDifSecundaria"/>
+						<field name="eduDifSecundaria"/>
+						<label name="eduDifTipoSecundaria"/>
+						<field name="eduDifTipoSecundaria"/>
+						<label name="eduRepeSecundaria"/>
+						<field name="eduRepeSecundaria"/>
+						<label name="eduRepeCausaSecundaria"/>
+						<field name="eduRepeCausaSecundaria"/>
+						<label name="eduDeserSecundaria"/>
+						<field name="eduDeserSecundaria"/>
+					</group>
+					<newline/>
+					<group string="Terciaria" id="eduforterci" xexpand="1" xfill="1"
+						states="{'invisible': And(
+
+						Not(Equal(Eval('eduFormalNivel'),'terc')),
+						Not(Equal(Eval('eduFormalNivel'),'uni')),
+
+						Not(Equal(Eval('eduFormalNivel'),'tercInc')),
+						Not(Equal(Eval('eduFormalNivel'),'uniInc'))
+
+						)}">
+						<label name="eduCentrosTerciaria"/>
+						<field name="eduCentrosTerciaria"/>
+						<label name="eduPubliTerciaria"/>
+						<field name="eduPubliTerciaria"/>
+					</group>
+					<newline/>
+					<group string="Universitaria" id="eduforterci" xexpand="1" xfill="1"
+						states="{'invisible': 
+							And(
+								Not(Equal(Eval('eduFormalNivel'),'uni')),
+								Not(Equal(Eval('eduFormalNivel'),'uniInc'))
+							)
+
+						}">
+						<label name="eduCentrosUniv"/>
+						<field name="eduCentrosUniv"/>
+						<label name="eduPubliUniv"/>
+						<field name="eduPubliUniv"/>
+					</group>
+				</group>
+				  <newline/>
+				  <group id="edunoforcheck">
+					<label name="eduNoFormal"/>
+					<field name="eduNoFormal"/>
+				  </group>
+				<newline/>
+
+				<group id="edunofor" xexpand="1" xfill="1"
+					states="{'invisible':
+					 	Equal(Eval('eduNoFormal'),'no')
+					}">
+					<group id="edunoforc1" string="Curso 1" xexpand="1" xfill="1">
+						<label name="eduNoForCurso1"/>
+						<field name="eduNoForCurso1"/>
+						<label name="eduNoForCentro1"/>
+						<field name="eduNoForCentro1"/>
+						<label name="eduNoForPubli1"/>
+						<field name="eduNoForPubli1"/>
+						<label name="eduNoForAsis1"/>
+						<field name="eduNoForAsis1"/>
+					</group>
+					<newline/>
+
+					<group id="edunoforc2" string="Curso 2" xexpand="1" xfill="1">
+						<label name="eduNoForCurso2"/>
+						<field name="eduNoForCurso2"/>
+						<label name="eduNoForCentro2"/>
+						<field name="eduNoForCentro2"/>
+						<label name="eduNoForPubli2"/>
+						<field name="eduNoForPubli2"/>
+						<label name="eduNoForAsis2"/>
+						<field name="eduNoForAsis2"/>
+					</group>
+					<newline/>
+
+					<group id="edunoforc3" string="Curso 3" xexpand="1" xfill="1">
+						<label name="eduNoForCurso3"/>
+						<field name="eduNoForCurso3"/>
+						<label name="eduNoForCentro3"/>
+						<field name="eduNoForCentro3"/>
+						<label name="eduNoForPubli3"/>
+						<field name="eduNoForPubli3"/>
+						<label name="eduNoForAsis3"/>
+						<field name="eduNoForAsis3"/>
+					</group>
+					<newline/>
+
+				</group>
+				<newline/>
+
+				<group string="Nivel Educativo Familiar" id="edufamilia" xexpand="1" xfill="1">
+					<label name="eduPadre"/>
+					<field name="eduPadre"/>
+					<label name="eduMadre"/>
+					<field name="eduMadre"/>
+					<label name="eduPareja"/>
+					<field name="eduPareja"/>
+
+				</group>
+
+			</page>
+			<page string="Discapacidad" id="discapacidad">
+				<group string="¿En cuales de las siguientes areas tiene esta persona limitaciones?" id="areasdisc" col="4">
+					<label name="limVisual" colspan="1"/>
+					<field name="limVisual" colspan="1"/>
+					<label name="limAuditiva" colspan="1"/>
+					<field name="limAuditiva" colspan="1"/>
+					<label name="limMental" colspan="1"/>
+					<field name="limMental" colspan="1"/>
+					<label name="limIntelectual" colspan="1"/>
+					<field name="limIntelectual" colspan="1"/>
+					<label name="limFisicoMotoras" colspan="1"/>
+					<field name="limFisicoMotoras" colspan="1"/>
+					<label name="limVisceral" colspan="1"/>
+					<field name="limVisceral" colspan="1"/>
+				</group>
+				<newline/>
+				<group id="defici" xexpand="1" col="4">
+					<label name="deficiencia" colspan="1"/>
+					<field name="deficiencia" colspan="1"/>
+					<newline/>
+					<label name="deterDisc" colspan="1"/>
+					<field name="deterDisc" colspan="1"/>
+					<newline/>
+					<label name="otroDeterDisc" colspan="1"/>
+					<field name="otroDeterDisc" colspan="1"/>
+                                        <newline/>
+
+					<label name="edadManDisc" colspan="1"/>
+					<field name="edadManDisc" colspan="1"/>
+					<newline/>
+
+					<label name="diagEspec" colspan="1"/>
+					<field name="diagEspec" colspan="1"/>
+
+					<label name="diaDijeron" colspan="1"/>
+					<field name="diaDijeron" colspan="1"/>
+
+					<label name="diagMedico" colspan="1"/>
+					<field name="diagMedico" colspan="1"/>
+
+					<label name="diagPapelMedico" colspan="1"/>
+					<field name="diagPapelMedico" colspan="1"/>
+					
+					<label name="disApoyo" colspan="1"/>
+					<field name="disApoyo" colspan="1"/>
+
+				</group>
+				<newline/>
+
+				<group string="¿Qué dispositivos utiliza dada su dificultad? (Marque todas las que corresponda)" id="disposiDisc" col="6" states="{'invisible': Not(Equal(Eval('disApoyo'),'si'))}">
+
+
+
+					<label name="anAdcr" colspan="1"/>
+					<field name="anAdcr" colspan="1"/>
+
+					<label name="anAdsr" colspan="1"/>
+					<field name="anAdsr" colspan="1"/>					
+
+					<label name="anIncr" colspan="1"/>
+					<field name="anIncr" colspan="1"/>					
+
+					<label name="anInsr" colspan="1"/>
+					<field name="anInsr" colspan="1"/>					
+
+					<label name="bVer" colspan="1"/>
+					<field name="bVer" colspan="1"/>					
+
+					<label name="bBl" colspan="1"/>
+					<field name="bBl" colspan="1"/>					
+
+					<label name="bCa" colspan="1"/>
+					<field name="bCa" colspan="1"/>					
+
+					<label name="cPosAd" colspan="1"/>
+					<field name="cPosAd" colspan="1"/>					
+
+					<label name="cPosIn" colspan="1"/>
+					<field name="cPosIn" colspan="1"/>					
+
+					<label name="pAd" colspan="1"/>
+					<field name="pAd" colspan="1"/>					
+
+					<label name="pIn" colspan="1"/>
+					<field name="pIn" colspan="1"/>					
+
+					<label name="fil" colspan="1"/>
+					<field name="fil" colspan="1"/>					
+
+					<label name="telesc" colspan="1"/>
+					<field name="telesc" colspan="1"/>					
+
+					<label name="lupa" colspan="1"/>
+					<field name="lupa" colspan="1"/>					
+
+					<label name="audif" colspan="1"/>
+					<field name="audif" colspan="1"/>					
+
+					<label name="guin" colspan="1"/>
+					<field name="guin" colspan="1"/>				
+
+					<label name="violin" colspan="1"/>
+					<field name="violin" colspan="1"/>					
+
+					<label name="sBaEv" colspan="1"/>
+					<field name="sBaEv" colspan="1"/>					
+
+					<label name="bUnPto" colspan="1"/>
+					<field name="bUnPto" colspan="1"/>					
+
+					<label name="btrecuaPtos" colspan="1"/>
+					<field name="btrecuaPtos" colspan="1"/>					
+
+					<label name="bRa" colspan="1"/>
+					<field name="bRa" colspan="1"/>					
+
+					<label name="colAnti" colspan="1"/>
+					<field name="colAnti" colspan="1"/>					
+
+					<label name="prote" colspan="1"/>
+					<field name="prote" colspan="1"/>					
+
+					<label name="almAnti" colspan="1"/>
+					<field name="almAnti" colspan="1"/>					
+
+					<label name="sRA" colspan="1"/>
+					<field name="sRA" colspan="1"/>					
+
+					<label name="sRI" colspan="1"/>
+					<field name="sRI" colspan="1"/>					
+
+					<label name="otroDisp" colspan="1"/>
+					<field name="otroDisp" colspan="1"/>					
+
+					<label name="otroEspec" colspan="1"/>
+					<field name="otroEspec" colspan="1"/>					
+				</group> 
+
+				<newline/>
+				<group id="benPrestaSoc" colspan="4" col="3">
+					<label name="benPrestaSocial" colspan="2"/>
+					<field name="benPrestaSocial" colspan="1"/>					
+				</group>
+
+				<newline/>
+				<group string="Indique cuál" id="cualPrestaSoc"
+					states="{'invisible': Not(Bool(Eval('benPrestaSocial')))}">
+
+					<label name="penoCon" colspan="1"/>
+					<field name="penoCon" colspan="1"/>					
+				
+					<label name="jubincap" colspan="1"/>
+					<field name="jubincap" colspan="1"/>					
+				
+					<label name="asigdob" colspan="1"/>
+					<field name="asigdob" colspan="1"/>					
+				
+					<label name="ayesbps" colspan="1"/>
+					<field name="ayesbps" colspan="1"/>					
+				
+					<label name="asiPsC" colspan="1"/>
+					<field name="asiPsC" colspan="1"/>					
+				
+					<label name="tutMil" colspan="1"/>
+					<field name="tutMil" colspan="1"/>					
+				
+					<label name="sPol" colspan="1"/>
+					<field name="sPol" colspan="1"/>					
+				
+					<label name="otrBenDisc" colspan="1"/>
+					<field name="otrBenDisc" colspan="1"/>					
+				
+					<label name="otroBenDiscEspec" colspan="1"/>
+					<field name="otroBenDiscEspec" colspan="1"/>					
+				</group>
+			</page>
+			<page string="Antecedentes" id="antecedentes">
+				<group id="intAntes">
+					<label name="intAnt" colspan="1"/>
+					<field name="intAnt" colspan="1"/>
+				</group>
+				<newline/>
+				<group string="Indicar cuáles" id="intervenciones" xexpand="1" xfill="1" col="16"
+						states="{'invisible': Not(Bool(Eval('intAnt')))}">
+
+						<label name="antPedagogica" colspan="1"/>
+						<field name="antPedagogica" colspan="1"/>
+						<label name="antPedagogicaPocas" colspan="1"/>
+						<field name="antPedagogicaPocas" colspan="1"/>
+						<label name="antPedagogicaMeses" colspan="1"/>
+						<field name="antPedagogicaMeses" colspan="1"/>
+						<label name="antPedagogicaMedicacion" colspan="1"/>
+						<field name="antPedagogicaMedicacion" colspan="1"/>
+						<label name="antPedagogicaMedTipo" colspan="1"/>
+						<field name="antPedagogicaMedTipo" colspan="1"/>
+						<label name="antPedagogicaObs" colspan="1"/>
+						<field name="antPedagogicaObs" colspan="1"/>
+					<newline/>
+						<label name="antMedica" colspan="1"/>
+						<field name="antMedica" colspan="1"/>
+						<label name="antMedicaPocas" colspan="1"/>
+						<field name="antMedicaPocas" colspan="1"/>
+						<label name="antMedicaMeses" colspan="1"/>
+						<field name="antMedicaMeses" colspan="1"/>
+						<label name="antMedicaMedicacion" colspan="1"/>
+						<field name="antMedicaMedicacion" colspan="1"/>
+						<label name="antMedicaMedTipo" colspan="1"/>
+						<field name="antMedicaMedTipo" colspan="1"/>
+						<label name="antMedicaObs" colspan="1"/>
+						<field name="antMedicaObs" colspan="1"/>
+
+					<newline/>
+
+
+						<label name="antPsicologica" colspan="1"/>
+						<field name="antPsicologica" colspan="1"/>
+						<label name="antPsicologicaPocas" colspan="1"/>
+						<field name="antPsicologicaPocas" colspan="1"/>
+						<label name="antPsicologicaMeses" colspan="1"/>
+						<field name="antPsicologicaMeses" colspan="1"/>
+						<label name="antPsicologicaMedicacion" colspan="1"/>
+						<field name="antPsicologicaMedicacion" colspan="1"/>
+						<label name="antPsicologicaMedTipo" colspan="1"/>
+						<field name="antPsicologicaMedTipo" colspan="1"/>
+						<label name="antPsicologicaObs" colspan="1"/>
+						<field name="antPsicologicaObs" colspan="1"/>
+
+					<newline/>
+
+
+						<label name="antPsiquiatrica" colspan="1"/>
+						<field name="antPsiquiatrica" colspan="1"/>
+						<label name="antPsiquiatricaPocas" colspan="1"/>
+						<field name="antPsiquiatricaPocas" colspan="1"/>
+						<label name="antPsiquiatricaMeses" colspan="1"/>
+						<field name="antPsiquiatricaMeses" colspan="1"/>
+						<label name="antPsiquiatricaMedicacion" colspan="1"/>
+						<field name="antPsiquiatricaMedicacion" colspan="1"/>
+						<label name="antPsiquiatricaMedTipo" colspan="1"/>
+						<field name="antPsiquiatricaMedTipo" colspan="1"/>
+						<label name="antPsiquiatricaObs" colspan="1"/>
+						<field name="antPsiquiatricaObs" colspan="1"/>
+
+					<newline/>
+
+
+						<label name="antPsiqInter" colspan="1"/>
+						<field name="antPsiqInter" colspan="1"/>
+						<label name="antPsiqInterPocas" colspan="1"/>
+						<field name="antPsiqInterPocas" colspan="1"/>
+						<label name="antPsiqInterMeses" colspan="1"/>
+						<field name="antPsiqInterMeses" colspan="1"/>
+						<label name="antPsiqInterMedicacion" colspan="1"/>
+						<field name="antPsiqInterMedicacion" colspan="1"/>
+						<label name="antPsiqInterMedTipo" colspan="1"/>
+						<field name="antPsiqInterMedTipo" colspan="1"/>
+						<label name="antPsiqInterObs" colspan="1"/>
+						<field name="antPsiqInterObs" colspan="1"/>
+
+					<newline/>
+
+						<label name="antIntOtra" colspan="1"/>
+						<field name="antIntOtra" colspan="1"/>
+						<label name="antIntOtraPocas" colspan="1"/>
+						<field name="antIntOtraPocas" colspan="1"/>
+						<label name="antIntOtraMeses" colspan="1"/>
+						<field name="antIntOtraMeses" colspan="1"/>
+						<label name="antIntOtraMedicacion" colspan="1"/>
+						<field name="antIntOtraMedicacion" colspan="1"/>
+						<label name="antIntOtraMedTipo" colspan="1"/>
+						<field name="antIntOtraMedTipo" colspan="1"/>
+						<label name="antIntOtraObs" colspan="1"/>
+						<field name="antIntOtraObs" colspan="1"/>
+				</group>
+
+				<newline/>
+
+			    <group string="Enfermedades crónicas" id="enfecron" xexpand="1" xfill="1" col="8">
+						<label name="antAsma" colspan="1"/>
+						<field name="antAsma" colspan="1"/>
+						<label name="antEpilepsia" colspan="1"/>
+						<field name="antEpilepsia" colspan="1"/>
+						<label name="antDiabetes" colspan="1"/>
+						<field name="antDiabetes" colspan="1"/>
+						<label name="antTiroides" colspan="1"/>
+						<field name="antTiroides" colspan="1"/>
+						<label name="antCancer" colspan="1"/>
+						<field name="antCancer" colspan="1"/>
+						<label name="antVIH" colspan="1"/>
+						<field name="antVIH" colspan="1"/>
+						<label name="antOsteo" colspan="1"/>
+						<field name="antOsteo" colspan="1"/>
+						<label name="antCardio" colspan="1"/>
+						<field name="antCardio" colspan="1"/>
+				</group>
+				<newline/>
+
+				<group id="acciycirusino">
+					<label name="accicirusino" colspan="1"/>
+					<field name="accicirusino" colspan="1"/>
+				</group>
+				<newline/>
+				<group id="accyciru" xexpand="1" xfill="1" col="16"
+						states="{'invisible': Not(Bool(Eval('accicirusino')))}">
+					<group string="Accidentes" id="accidentes" xexpand="1" xfill="1" col="16">
+						<label name="antAccidente1Edad" colspan="1"/>
+						<field name="antAccidente1Edad" colspan="1"/>
+						<label name="antAccidente1Tipo" colspan="1"/>
+						<field name="antAccidente1Tipo" colspan="13" xexpand="1" xfill="1"/>
+						<newline/>
+	
+						<label name="antAccidente2Edad" colspan="1"/>
+						<field name="antAccidente2Edad" colspan="1"/>
+						<label name="antAccidente2Tipo" colspan="1"/>
+						<field name="antAccidente2Tipo" colspan="13" xexpand="1" xfill="1"/>
+					</group>
+					<newline/>
+
+					<group string="Cirugías" id="cirugias" xexpand="1" xfill="1" col="16">
+						<label name="antCirugia1Edad" colspan="1"/>
+						<field name="antCirugia1Edad" colspan="1"/>
+						<label name="antCirugia1Tipo" colspan="1"/>
+						<field name="antCirugia1Tipo" colspan="13" xexpand="1" xfill="1"/>
+						<newline/>
+		
+						<label name="antCirugia2Edad" colspan="1"/>
+						<field name="antCirugia2Edad" colspan="1"/>
+						<label name="antCirugia2Tipo" colspan="1"/>
+						<field name="antCirugia2Tipo" colspan="13" xexpand="1" xfill="1"/>
+					</group>
+
+				</group>
+				<newline/>
+
+				<group id="antAutoTuvogr">
+					<label name="antAutoTuvo" colspan="1"/>
+					<field name="antAutoTuvo" colspan="1"/>
+				</group>
+				<newline/>
+				<group string="Indicar" id="autoelim" xexpand="1" xfill="1" col="16"
+					states="{'invisible': Not(Bool(Eval('antAutoTuvo')))}">
+					<label name="antAutoeliminCant" colspan="1"/>
+					<field name="antAutoeliminCant" colspan="1"/>
+					<newline/>
+					
+					<label name="antAutoelim1Edad" colspan="1"/>
+					<field name="antAutoelim1Edad" colspan="1"/>
+					<label name="antAutoelim1Tipo" colspan="1"/>
+					<field name="antAutoelim1Tipo" colspan="13" xexpand="1" xfill="1"/>
+					<newline/>
+	
+					<label name="antAutoelim2Edad" colspan="1"/>
+					<field name="antAutoelim2Edad" colspan="1"/>
+					<label name="antAutoelim2Tipo" colspan="1"/>
+					<field name="antAutoelim2Tipo" colspan="13" xexpand="1" xfill="1"/>
+				</group>
+			</page>
+			<page string="Violencia y Uso de Sustancias" id="violysust">
+				<group string="Violencia" id="violencia">
+					<group id="vioPsicologica" string="Violencia Psicológica">
+						<group id="vioDanoPsicoPrin">
+							<label name="vioDanoPsico" xfill="1"/>
+							<field name="vioDanoPsico"/>
+							<newline/>
+							<label name="vioDanoPsicoQuien"/>
+							<field name="vioDanoPsicoQuien"/>
+						</group>
+						<newline/>
+
+						<separator string="Etapas en las que ocurrió: " id="vioDanoPsicoetapasep"  states="{'invisible': Or(Not(Equal(Eval('vioDanoPsico'),'si')),Or(Equal(Eval('vioDanoPsico'),'no'),Equal(Eval('vioDanoPsico'),'nc')))}"/>
+						<newline/>
+						<group id="vioDanoPsicoetapa" col="6" states="{'invisible': Or(Not(Equal(Eval('vioDanoPsico'),'si')),Or(Equal(Eval('vioDanoPsico'),'no'),Equal(Eval('vioDanoPsico'),'nc')))}">
+							<label name="vioDanoPsicoNino" colspan="1"/>
+							<field name="vioDanoPsicoNino" colspan="1"/>
+							<label name="vioDanoPsicoAdoles" colspan="1"/>
+							<field name="vioDanoPsicoAdoles" colspan="1"/>
+							<label name="vioDanoPsicoJoven" colspan="1"/>
+							<field name="vioDanoPsicoJoven" colspan="1"/>
+							<label name="vioDanoPsicoAdulto" colspan="1"/>
+							<field name="vioDanoPsicoAdulto" colspan="1"/>
+							<label name="vioDanoPsicoMayor" colspan="1"/>
+							<field name="vioDanoPsicoMayor" colspan="1"/>
+							<label name="vioDanoPsicoEmbarazo" colspan="1"/>
+							<field name="vioDanoPsicoEmbarazo" colspan="1"/>
+						</group>
+						<newline/>
+						<group id="vioDanoPsicoActual">
+							<label name="vioDanoPsicoActual" colspan="1"/>
+							<field name="vioDanoPsicoActual" colspan="1"/>
+						</group>
+					</group>
+					<newline/>
+					<separator id="vioDanoPsico" xfill="1" xexpand="1"/>
+					<newline/>
+					<group id="vioFisica" string="Violencia Física">
+						<group id="vioDanoFisicoPrin">
+							<label name="vioDanoFisico" colspan="1"/>
+							<field name="vioDanoFisico" colspan="1"/>
+							<newline/>
+							<label name="vioDanoFisicoQuien"/>
+							<field name="vioDanoFisicoQuien"/>
+						</group>
+						<newline/>
+						<separator string="Etapas en las que ocurrió: " id="vioDanoPsicoetapasep"  states="{'invisible': Or(Not(Equal(Eval('vioDanoFisico'),'si')),Or(Equal(Eval('vioDanoFisico'),'no'),Equal(Eval('vioDanoFisico'),'nc')))}"/>
+						<newline/>
+						<group id="vioDanoFisicoetapa" col="6" states="{'invisible': Or(Not(Equal(Eval('vioDanoFisico'),'si')),Or(Equal(Eval('vioDanoFisico'),'no'),Equal(Eval('vioDanoFisico'),'nc')))}">
+							<label name="vioDanoFisicoNino" colspan="1"/>
+							<field name="vioDanoFisicoNino" colspan="1"/>
+							<label name="vioDanoFisicoAdoles" colspan="1"/>
+							<field name="vioDanoFisicoAdoles" colspan="1"/>
+							<label name="vioDanoFisicoJoven" colspan="1"/>
+							<field name="vioDanoFisicoJoven" colspan="1"/>
+							<label name="vioDanoFisicoAdulto" colspan="1"/>
+							<field name="vioDanoFisicoAdulto" colspan="1"/>
+							<label name="vioDanoFisicoMayor" colspan="1"/>
+							<field name="vioDanoFisicoMayor" colspan="1"/>
+							<label name="vioDanoFisicoEmbarazo" colspan="1"/>
+							<field name="vioDanoFisicoEmbarazo" colspan="1"/>
+						</group>
+						<newline/>
+						<group id="vioDanoFisicoActual">
+							<label name="vioDanoFisicoActual" colspan="1"/>
+							<field name="vioDanoFisicoActual" colspan="1"/>
+						</group>
+					</group>
+					<newline/>
+					<separator id="vioDanoFisico" xfill="1" xexpand="1"/>
+					<newline/>
+					<group id="vioSexual" string="Violencia Sexual">
+						<group id="vioDanoSexualPrin">
+							<label name="vioDanoSexual"/>
+							<field name="vioDanoSexual" colspan="1"/>
+							<newline/>
+							<label name="vioDanoSexualQuien"/>
+							<field name="vioDanoSexualQuien"/>
+						</group>
+
+						<newline/>
+						<separator id="vioDanoSexualsep" xfill="1" xexpand="1"/>
+						<newline/>
+
+						<group id="vioViolaPrin">
+							<label name="vioViola"/>
+							<field name="vioViola" colspan="1"/>
+							<newline/>
+							<label name="vioViolaQuien"/>
+							<field name="vioViolaQuien"/>
+						</group>
+						<newline/>
+
+						<separator string="Etapas en las que ocurrió: " id="vioViolaetapasep"  states="{'invisible': 
+									And(
+										Or(
+											Not(Equal(Eval('vioViola'),'si')),
+												Or(
+													Equal(Eval('vioViola'),'no'),
+													Equal(Eval('vioViola'),'nc')
+												)
+										),
+											Or(
+												Not(Equal(Eval('vioDanoSexual'),'si')),
+												Or( 
+													Equal(Eval('vioDanoSexual'),'no'),
+													Equal(Eval('vioDanoSexual'),'nc')
+												)
+											)
+									)
+								}"/>
+
+						<newline/>
+
+						<group id="vioViolaetapa" col="6" states="{'invisible': 
+									And(
+										Or(
+											Not(Equal(Eval('vioViola'),'si')),
+												Or(
+													Equal(Eval('vioViola'),'no'),
+													Equal(Eval('vioViola'),'nc')
+												)
+										),
+											Or(
+												Not(Equal(Eval('vioDanoSexual'),'si')),
+												Or( 
+													Equal(Eval('vioDanoSexual'),'no'),
+													Equal(Eval('vioDanoSexual'),'nc')
+												)
+											)
+									)									
+											}">
+							<label name="vioViolaNino" colspan="1"/>
+							<field name="vioViolaNino" colspan="1"/>
+							<label name="vioViolaAdoles" colspan="1"/>
+							<field name="vioViolaAdoles" colspan="1"/>
+							<label name="vioViolaJoven" colspan="1"/>
+							<field name="vioViolaJoven" colspan="1"/>
+							<label name="vioViolaAdulto" colspan="1"/>
+							<field name="vioViolaAdulto" colspan="1"/>
+							<label name="vioViolaMayor" colspan="1"/>
+							<field name="vioViolaMayor" colspan="1"/>
+							<label name="vioViolaEmbarazo" colspan="1"/>
+							<field name="vioViolaEmbarazo" colspan="1"/>
+						</group>
+						<newline/>
+						<group id="vioViolaActual">
+							<label name="vioViolaActual" colspan="1"/>
+							<field name="vioViolaActual" colspan="1"/>
+						</group>
+					</group>		
+					<newline/>
+						<separator id="vioViola" xfill="1" xexpand="1"/>
+					<newline/>
+					<group id="vioPensamientoID">
+						<label name="vioPensamiento" colspan="1"/>
+						<field name="vioPensamiento" colspan="1"/>				
+					</group>
+				</group>
+				<newline/>
+				<group string="Uso de sustancias" id="sustancias">
+					<label name="sustAlcohol"/>
+					<field name="sustAlcohol"/>
+					<newline/>
+					<label name="sustCigarro"/>
+					<field name="sustCigarro"/>
+					<newline/>
+					<label name="sustMedicamento"/>
+					<field name="sustMedicamento"/>
+					<newline/>
+					<label name="sustDroga"/>
+					<field name="sustDroga"/>
+				</group>
+
+			</page>
+
+			<page string="Antecedentes de Familiares" id="antecedentesFam">
+	
+				<group string="Intervenciones Anteriores" id="intervencionesFam" xexpand="1" xfill="1" col="16">
+						<label name="antFamIntervencion1" colspan="1"/>
+						<field name="antFamIntervencion1" colspan="1"/>
+						<label name="antFamIntervencionTipo1" colspan="1"/>
+						<field name="antFamIntervencionTipo1" colspan="1"/>
+						<label name="antFamIntervencionMed1" colspan="1"/>
+						<field name="antFamIntervencionMed1" colspan="1"/>
+						<newline/>
+						<label name="antFamIntervencion2" colspan="1"/>
+						<field name="antFamIntervencion2" colspan="1"/>
+						<label name="antFamIntervencionTipo2" colspan="1"/>
+						<field name="antFamIntervencionTipo2" colspan="1"/>
+						<label name="antFamIntervencionMed2" colspan="1"/>
+						<field name="antFamIntervencionMed2" colspan="1"/>
+						<newline/>
+						<label name="antFamIntervencion3" colspan="1"/>
+						<field name="antFamIntervencion3" colspan="1"/>
+						<label name="antFamIntervencionTipo3" colspan="1"/>
+						<field name="antFamIntervencionTipo3" colspan="1"/>
+						<label name="antFamIntervencionMed3" colspan="1"/>
+						<field name="antFamIntervencionMed3" colspan="1"/>
+				</group>
+				<newline/>
+
+				<group string="Intentos de Autoeliminación" id="autoelim" xexpand="1" xfill="1" col="16">
+						<label name="antFamAutoelim1" colspan="1"/>
+						<field name="antFamAutoelim1" colspan="1"/>
+						<label name="antFamAutoelimEdad1" colspan="1"/>
+						<field name="antFamAutoelimEdad1" colspan="1"/>
+						<label name="antFamAutoelimConsu1" colspan="1"/>
+						<field name="antFamAutoelimConsu1" colspan="1"/>
+						<newline/>
+						<label name="antFamAutoelim2" colspan="1"/>
+						<field name="antFamAutoelim2" colspan="1"/>
+						<label name="antFamAutoelimEdad2" colspan="1"/>
+						<field name="antFamAutoelimEdad2" colspan="1"/>
+						<label name="antFamAutoelimConsu2" colspan="1"/>
+						<field name="antFamAutoelimConsu2" colspan="1"/>
+						<newline/>
+						<label name="antFamAutoelim3" colspan="1"/>
+						<field name="antFamAutoelim3" colspan="1"/>
+						<label name="antFamAutoelimEdad3" colspan="1"/>
+						<field name="antFamAutoelimEdad3" colspan="1"/>
+						<label name="antFamAutoelimConsu3" colspan="1"/>
+						<field name="antFamAutoelimConsu3" colspan="1"/>
+				</group>
+
+			</page>
+			<page string="Violencia y Uso de Sustancias en Familiares" id="violysustFam">
+				<group string="Violencia" id="violenciaFam">
+					<group id="violenciaFam1" string="Familiar 1" col="4" xexpand="1" xfill="1">
+						<label name="vioFam1" colspan="1"/>
+						<field name="vioFam1" colspan="3"/>
+
+						<label name="vioDanoPsicoFam1" colspan="1"/>
+						<field name="vioDanoPsicoFam1" colspan="1"/>
+						
+						<label name="vioDanoPsicoActualFam1" colspan="1"/>
+						<field name="vioDanoPsicoActualFam1" colspan="1"/>
+						
+						<label name="vioDanoFisicoFam1" colspan="1"/>
+						<field name="vioDanoFisicoFam1" colspan="1"/>
+						
+                        <label name="vioDanoFisicoActualFam1" colspan="1"/>
+						<field name="vioDanoFisicoActualFam1" colspan="1"/>
+						
+
+						<label name="vioDanoSexualFam1" colspan="1"/>
+						<field name="vioDanoSexualFam1" colspan="1"/>
+						
+                        <label name="vioDanoSexualActualFam1" colspan="1"/>
+						<field name="vioDanoSexualActualFam1" colspan="1"/>
+					</group>
+					<newline/>
+	                <group id="violenciaFam2" string="Familiar 2" col="4" xexpand="1" xfill="1">
+						<label name="vioFam2" colspan="1"/>
+						<field name="vioFam2" colspan="3"/>
+
+						<label name="vioDanoPsicoFam2" colspan="1"/>
+						<field name="vioDanoPsicoFam2" colspan="1"/>
+						
+						<label name="vioDanoPsicoActualFam2" colspan="1"/>
+						<field name="vioDanoPsicoActualFam2" colspan="1"/>
+						
+						<label name="vioDanoFisicoFam2" colspan="1"/>
+						<field name="vioDanoFisicoFam2" colspan="1"/>
+						
+                        <label name="vioDanoFisicoActualFam2" colspan="1"/>
+						<field name="vioDanoFisicoActualFam2" colspan="1"/>
+						
+
+						<label name="vioDanoSexualFam2" colspan="1"/>
+						<field name="vioDanoSexualFam2" colspan="1"/>
+						
+                        <label name="vioDanoSexualActualFam2" colspan="1"/>
+						<field name="vioDanoSexualActualFam2" colspan="1"/>
+					</group>
+					<newline/>
+	                <group id="violenciaFam3" string="Familiar 3" col="4" xexpand="1" xfill="1">
+						<label name="vioFam3" colspan="1"/>
+						<field name="vioFam3" colspan="3"/>
+
+						<label name="vioDanoPsicoFam3" colspan="1"/>
+						<field name="vioDanoPsicoFam3" colspan="1"/>
+						<label name="vioDanoPsicoActualFam3" colspan="1"/>
+						<field name="vioDanoPsicoActualFam3" colspan="1"/>
+						
+						<label name="vioDanoFisicoFam3" colspan="1"/>
+						<field name="vioDanoFisicoFam3" colspan="1"/>
+                        <label name="vioDanoFisicoActualFam3" colspan="1"/>
+						<field name="vioDanoFisicoActualFam3" colspan="1"/>
+						
+
+						<label name="vioDanoSexualFam3" colspan="1"/>
+						<field name="vioDanoSexualFam3" colspan="1"/>
+                        <label name="vioDanoSexualActualFam3" colspan="1"/>
+						<field name="vioDanoSexualActualFam3" colspan="1"/>
+					</group>
+				</group>
+				<newline/>
+				<group string="Uso de sustancias en familiares" id="sustanciasFam">
+                    <group id="sustanciasFam1" string="Familiar 1" col="3" xfill="1">
+ 						<label name="sustFam1"/>
+						<field name="sustFam1" colspan="2"/>
+
+						<label name="sustAlcoholFam1"/>
+						<field name="sustAlcoholFam1" colspan="2"/>
+
+						<label name="sustCigarroFam1"/>
+						<field name="sustCigarroFam1" colspan="2"/>
+
+						<label name="sustMedicamentoFam1"/>
+						<field name="sustMedicamentoFam1" colspan="2"/>
+						
+						<label name="sustDrogaFam1"/>
+                        <field name="sustDrogaFam1" colspan="2"/>
+
+					</group>
+					<newline/>
+					<group id="sustanciasFam2" string="Familiar 2" col="3" xexpand="1">
+						<label name="sustFam2"/>
+						<field name="sustFam2" colspan="2"/>
+
+						<label name="sustAlcoholFam2"/>
+						<field name="sustAlcoholFam2" colspan="2"/>
+
+						<label name="sustCigarroFam2"/>
+						<field name="sustCigarroFam2" colspan="2"/>
+						
+						<label name="sustMedicamentoFam2"/>
+						<field name="sustMedicamentoFam2" colspan="2"/>
+						
+						<label name="sustDrogaFam2"/>
+						<field name="sustDrogaFam2" colspan="2"/>
+					</group>
+					<newline/>
+					<group id="sustanciasFam3" string="Familiar 3" col="3">
+						<label name="sustFam3"/>
+						<field name="sustFam3" colspan="2"/>
+
+						<label name="sustAlcoholFam3"/>
+						<field name="sustAlcoholFam3" colspan="2"/>
+
+						<label name="sustCigarroFam3"/>
+						<field name="sustCigarroFam3" colspan="2"/>
+						
+						<label name="sustMedicamentoFam3"/>
+						<field name="sustMedicamentoFam3" colspan="2"/>
+						
+						<label name="sustDrogaFam3"/>
+						<field name="sustDrogaFam3" colspan="2"/>
+					</group>
+				</group>
+			</page>
+
+			<page string="Tratamiento/Intervenciones Actuales" id="tratintervencionesactuales">
+	
+				<group string="Intervención pedagógica" id="intervepedagogica" col="6">
+						<label name="fechaIntervePeda"/>
+						<field name="fechaIntervePeda" colspan="1"/>
+
+						<label name="mediIntervePeda"/>
+						<field name="mediIntervePeda" colspan="1"/>
+
+						<label name="tipoMediIntervePeda"/>
+						<field name="tipoMediIntervePeda" colspan="1"/>
+
+						<newline/>
+						<label name="ObsIntervePeda"/>
+						<field name="ObsIntervePeda" colspan="5"/>
+                </group>
+                <newline/>
+				<group string="Intervención médica" id="intervemedica" col="6">
+						<label name="fechaInterveMedica"/>
+						<field name="fechaInterveMedica" colspan="1"/>
+
+						<label name="mediInterveMedica"/>
+						<field name="mediInterveMedica" colspan="1"/>
+
+						<label name="tipoMediInterveMedica"/>
+						<field name="tipoMediInterveMedica" colspan="1"/>
+
+						<newline/>
+						<label name="ObsInterveMedica"/>
+						<field name="ObsInterveMedica" colspan="5"/>
+                </group>
+                <newline/>
+				<group string="Intervención psicológica" id="intervepsico" col="6">
+
+						<label name="fechaIntervePsico"/>
+						<field name="fechaIntervePsico" colspan="1"/>
+
+						<label name="mediIntervePsico"/>
+						<field name="mediIntervePsico" colspan="1"/>
+
+						<label name="tipoMediIntervePsico"/>
+						<field name="tipoMediIntervePsico" colspan="1"/>
+
+						<newline/>
+						<label name="ObsIntervePsico"/>
+						<field name="ObsIntervePsico" colspan="5"/>
+
+                </group>
+                <newline/>
+                <group string="Intervención psiquiátrica" id="intervepsiqui" col="6">
+
+						<label name="fechaIntervePsiqui"/>
+						<field name="fechaIntervePsiqui" colspan="1"/>
+
+						<label name="mediIntervePsiqui"/>
+						<field name="mediIntervePsiqui" colspan="1"/>
+
+						<label name="tipoMediIntervePsiqui"/>
+						<field name="tipoMediIntervePsiqui" colspan="1"/>
+
+                        <newline/>
+						<label name="ObsIntervePsiqui"/>
+						<field name="ObsIntervePsiqui" colspan="5"/>
+
+                </group>
+                <newline/>
+                <group string="Internación psiquiátrica" id="internapsiqui" col="6">
+
+						<label name="fechaInternaPsiqui"/>
+						<field name="fechaInternaPsiqui" colspan="1"/>
+
+						<label name="mediInternaPsiqui"/>
+						<field name="mediInternaPsiqui" colspan="1"/>
+
+						<label name="tipoMediInternaPsiqui"/>
+						<field name="tipoMediInternaPsiqui" colspan="1"/>
+
+						<newline/>
+						<label name="ObsInternaPsiqui"/>
+						<field name="ObsInternaPsiqui" colspan="5"/>
+                </group>
+                <newline/>
+                <group string="Otra 1" id="trataotra1" col="6">
+						<label name="fechaTrataOtra1"/>
+						<field name="fechaTrataOtra1" colspan="1"/>
+
+						<label name="mediTrataOtra1"/>
+						<field name="mediTrataOtra1" colspan="1"/>
+
+						<label name="tipoMediTrataOtra1"/>
+						<field name="tipoMediTrataOtra1" colspan="1"/>
+
+				        <newline/>
+						<label name="ObsTrataOtra1"/>
+						<field name="ObsTrataOtra1" colspan="5"/>
+
+                </group>
+                <newline/>
+                <group string="Otra 2" id="trataotra2" col="6">
+
+						<label name="fechaTrataOtra2"/>
+						<field name="fechaTrataOtra2" colspan="1"/>
+
+						<label name="mediTrataOtra2"/>
+						<field name="mediTrataOtra2" colspan="1"/>
+
+						<label name="tipoMediTrataOtra2"/>
+						<field name="tipoMediTrataOtra2" colspan="1"/>
+
+    					<newline/>
+						<label name="ObsTrataOtra2"/>
+						<field name="ObsTrataOtra2" colspan="5"/>
+                </group>
+                <newline/>
+                <group string="Otra 3" id="trataotra3" col="6">
+
+						<label name="fechaTrataOtra3"/>
+						<field name="fechaTrataOtra3" colspan="1"/>
+
+						<label name="mediTrataOtra3"/>
+						<field name="mediTrataOtra3" colspan="1"/>
+
+						<label name="tipoMediTrataOtra3"/>
+						<field name="tipoMediTrataOtra3" colspan="1"/>
+
+				        <newline/>
+						<label name="ObsTrataOtra3"/>
+						<field name="ObsTrataOtra3" colspan="5"/>
+				</group>
+				<newline/>
+				
+
+			</page>
+		    <page string="Relato" id="relato">
+					<group string="Afectos - Emociones - Estados afectivos" id="afectosemocionesestados" col="2">
+						<label name="angustia"/>
+						<field name="angustia" colspan="1"/>
+
+						<label name="ansiedad"/>
+						<field name="ansiedad" colspan="1"/>
+
+						<label name="sentCulpa"/>
+						<field name="sentCulpa" colspan="1"/>
+
+						<label name="sentTristeza"/>
+						<field name="sentTristeza" colspan="1"/>
+
+						<label name="sentSoledad"/>
+						<field name="sentSoledad" colspan="1"/>
+
+						<label name="sentDesconfianza"/>
+						<field name="sentDesconfianza" colspan="1"/>
+
+						<label name="sentGrandeza"/>
+						<field name="sentGrandeza" colspan="1"/>
+
+						<label name="sentCelos"/>
+						<field name="sentCelos" colspan="1"/>
+
+						<label name="sentEnvidia"/>
+						<field name="sentEnvidia" colspan="1"/>
+
+						<label name="elevNivelExigencia"/>
+						<field name="elevNivelExigencia" colspan="1"/>
+
+						<label name="malHumor"/>
+						<field name="malHumor" colspan="1"/>
+
+					    <newline/>
+						<group string="Estado afectivo o humor" id="estadoafectivohumor" colspan="2">
+							<label name="depresivo"/>
+							<field name="depresivo" colspan="1"/>
+
+							<label name="expansivo"/>
+							<field name="expansivo" colspan="1"/>
+
+							<label name="melancolico"/>
+							<field name="melancolico" colspan="1"/>
+						</group>
+
+					</group>
+					<newline/>
+					<group string="Autoestima o imagen de si" id="autoestimaoimgdesi" colspan="2">
+						<label name="imgMismoDevaluada"/>
+						<field name="imgMismoDevaluada" colspan="1"/>
+
+						<label name="imgMismoSobrevaluada"/>
+						<field name="imgMismoSobrevaluada" colspan="1"/>
+
+						<label name="inseguridad"/>
+						<field name="inseguridad" colspan="1"/>
+
+						<label name="cmbsImgMismo"/>
+						<field name="cmbsImgMismo" colspan="1"/>
+
+						<label name="vivenciasVacio"/>
+						<field name="vivenciasVacio" colspan="1"/>
+
+					</group>
+					<newline/>
+					<group string="Síntomas neuróticos" id="sintomasneuroticos" colspan="2">
+						<label name="fobias"/>
+						<field name="fobias" colspan="1"/>
+
+						<label name="sintomasConversivos"/>
+						<field name="sintomasConversivos" colspan="1"/>
+
+						<label name="sintomasObsesivos"/>
+						<field name="sintomasObsesivos" colspan="1"/>
+					</group>
+					<newline/>
+					<group string="El cuerpo y sus funciones" id="elcuerpoysusfunciones" colspan="2">
+						<label name="transtornoSueno"/>
+						<field name="transtornoSueno" colspan="1"/>
+
+						<label name="disfuncionSexual"/>
+						<field name="disfuncionSexual" colspan="1"/>
+
+						<label name="sintomasPsicosomaticos"/>
+						<field name="sintomasPsicosomaticos" colspan="1"/>
+
+						<label name="quejasHipocondria"/>
+						<field name="quejasHipocondria" colspan="1"/>
+					</group>
+					<newline/>
+					<group string="Regulación de los afectos e impulsos" id="reguladeafectosimpulsos" colspan="2">
+						<label name="bajaTolFrustracion"/>
+						<field name="bajaTolFrustracion" colspan="1"/>
+
+						<label name="dificultadCtrlImpulsos"/>
+						<field name="dificultadCtrlImpulsos" colspan="1"/>
+
+						<label name="hiperactividad"/>
+						<field name="hiperactividad" colspan="1"/>
+						
+						<label name="iae"/>
+						<field name="iae" colspan="1"/>
+
+					    <newline/>
+						<group string="Adicciones" id="adicciones" colspan="4">
+							<label name="adiJuegoAzar"/>
+							<field name="adiJuegoAzar" colspan="1"/>
+
+							<label name="adiTabaco"/>
+							<field name="adiTabaco" colspan="1"/>
+
+							<label name="adiAlcohol"/>
+							<field name="adiAlcohol" colspan="1"/>
+
+							<label name="adiDrogas"/>
+							<field name="adiDrogas" colspan="1"/>
+						</group>
+					    <newline/>
+						<group string="Consumo problemático" id="consumoProblematico" colspan="4">
+							<label name="consumoProbJuegoAzar"/>
+							<field name="consumoProbJuegoAzar" colspan="1"/>
+
+							<label name="consumoProbTabaco"/>
+							<field name="consumoProbTabaco" colspan="1"/>
+
+							<label name="consumoProbAlcohol"/>
+							<field name="consumoProbAlcohol" colspan="1"/>
+
+							<label name="consumoProbDrogas"/>
+							<field name="consumoProbDrogas" colspan="1"/>
+					    <newline/>
+						</group>
+							<label name="alimenticias"/>
+							<field name="alimenticias" colspan="1"/>
+
+							<label name="sexual"/>
+							<field name="sexual" colspan="1"/>
+
+							<label name="otro"/>
+							<field name="otro" colspan="1"/>
+					</group>
+					<newline/>
+					<group string="Síntomas delirantes o pensamientos" id="sintdelirantesopensamientos" colspan="2">
+							<label name="sintDelirantesAgudos"/>
+							<field name="sintDelirantesAgudos" colspan="1"/>
+
+							<label name="sintDelirantesCronicos"/>
+							<field name="sintDelirantesCronicos" colspan="1"/>
+
+							<label name="sintDelirantesCronicosReagudizados"/>
+							<field name="sintDelirantesCronicosReagudizados" colspan="1"/>
+
+							<label name="proyResponsabilidadOtros"/>
+							<field name="proyResponsabilidadOtros" colspan="1"/>
+
+							<label name="proyMasivaResponsabilidadOtros"/>
+							<field name="proyMasivaResponsabilidadOtros" colspan="1"/>
+
+							<label name="ideasPersecutorias"/>
+							<field name="ideasPersecutorias" colspan="1"/>
+					</group>
+
+		    </page>
+
+
+
+			</notebook>
+		</form>
+		]]>
+	</field>
+</record>
+
+<!-- Evento que activa las vistas -->
+<record model="ir.action.act_window" id="act_formulario_form">
+	<field name="name">Formulario Inicial</field>
+	<field name="res_model">cefiro.formulario</field>
+</record>
+
+<!-- Conexion entre el evento y la vista de arbol -->
+<record model="ir.action.act_window.view" id="act_formulario_form_view1">
+	<field name="sequence" eval="10"/>
+	<field name="view" ref="formulario_view_tree"/>
+	<field name="act_window" ref="act_formulario_form"/>
+</record>
+
+<!-- Conexion entre el evento y la vista de formulario -->
+<record model="ir.action.act_window.view" id="act_formulario_form_view2">
+	<field name="sequence" eval="20"/>
+	<field name="view" ref="formulario_view_form"/>
+	<field name="act_window" ref="act_formulario_form"/>
+</record>
+
+<!-- Menu -->
+<!--<menuitem parent="menu_hc" sequence="1" id="menu_formulario" icon="tryton-list" action="act_formulario_form"/>-->
+
+
+<!-- Cosas asociadas a la clase Final -->
+
+<!-- Vista de arbol -->
+<record model="ir.ui.view" id="final_view_tree">
+	<field name="model">cefiro.final</field>
+	<field name="type">tree</field>
+	<field name="arch" type="xml">
+		<![CDATA[
+		<tree string="final">
+			<field name="fechaini"/>
+			<field name="fechaFin"/>
+			<field name="asisTot"/>
+			<field name="inasisTot"/>
+			<field name="grupal"/>
+		</tree>
+		]]>
+	</field>
+</record>
+
+<!-- Vista de formulario -->
+<record model="ir.ui.view" id="final_view_form">
+	<field name="model">cefiro.final</field>
+	<field name="type">form</field>
+	<field name="arch" type="xml">
+		<![CDATA[
+		<form string="final">
+			<group string="Modalidad de Intervención" id="modinterven" col="8">
+				<group string="Entrevistas" id="entrevistas" col="8">
+					<label name="entreFam" colspan="1"/>
+					<field name="entreFam" colspan="1"/>
+				</group>
+				<newline/>
+				<group string="Test Gráficos" id="testgraficos" col="8">
+					<label name="testMachover" colspan="1"/>
+					<field name="testMachover" colspan="1"/>
+					<label name="testHTP" colspan="1"/>
+					<field name="testHTP" colspan="1"/>
+					<label name="test8f" colspan="1"/>
+					<field name="test8f" colspan="1"/>
+					<label name="testLluvia" colspan="1"/>
+					<field name="testLluvia" colspan="1"/>
+				</group>
+				<newline/>
+				<group string="Tests" id="tests" col="10">
+					<label name="testRorscharch" colspan="1"/>
+					<field name="testRorscharch" colspan="1"/>
+					<label name="testTAT" colspan="1"/>
+					<field name="testTAT" colspan="1"/>
+					<label name="testPhilipson" colspan="1"/>
+					<field name="testPhilipson" colspan="1"/>
+					<label name="testWAISC" colspan="1"/>
+					<field name="testWAISC" colspan="1"/>
+					<label name="testBender" colspan="1"/>
+					<field name="testBender" colspan="1"/>
+				</group>
+				<newline/>
+				<group string="Cuestionarios o Escalas" id="cuestionariosescalas" col="8">
+					<label name="testSCHL" colspan="1"/>
+					<field name="testSCHL" colspan="1"/>
+					<label name="testSPC" colspan="1"/>
+					<field name="testSPC" colspan="1"/>
+				</group>
+
+			</group>
+			<newline/>
+			<group string="Intervención de:" id="intervende" col="10">
+				<group string="Otros profesionales o estudios durante el proceso" id="otrosprof" col="10">
+					<label name="interPsiq" colspan="1"/>
+					<field name="interPsiq" colspan="1"/>
+					<label name="interMed" colspan="1"/>
+					<field name="interMed" colspan="1"/>
+					<label name="interPiscop" colspan="1"/>
+					<field name="interPiscop" colspan="1"/>
+					<label name="interFono" colspan="1"/>
+					<field name="interFono" colspan="1"/>
+					<label name="interNutri" colspan="1"/>
+					<field name="interNutri" colspan="1"/>
+				</group>
+				<newline/>
+				<group string="Instituciones" id="interinsti" col="8">
+					<label name="interEdu" colspan="1"/>
+					<field name="interEdu" colspan="1"/>
+					<label name="interJudi" colspan="1"/>
+					<field name="interJudi" colspan="1"/>
+					<label name="interInstPsiq" colspan="1"/>
+					<field name="interInstPsiq" colspan="1"/>
+					<label name="interOtras" colspan="1"/>
+					<field name="interOtras" colspan="1"/>
+				</group>
+			</group>
+			<newline/>
+
+			<group string="Interconsulta con:" id="interconsulta" col="10">
+					<label name="interconPsiq" colspan="1"/>
+					<field name="interconPsiq" colspan="1"/>
+					<label name="interconMed" colspan="1"/>
+					<field name="interconMed" colspan="1"/>
+					<label name="interconPiscop" colspan="1"/>
+					<field name="interconPiscop" colspan="1"/>
+					<label name="interconFono" colspan="1"/>
+					<field name="interconFono" colspan="1"/>
+					<label name="interconNutri" colspan="1"/>
+					<field name="interconNutri" colspan="1"/>
+			</group>
+			<newline/>
+			<group string="Derivación:" id="derivacion" col="8">
+					<label name="deriFac" colspan="1"/>
+					<field name="deriFac" colspan="1"/>
+					<label name="deriOtro" colspan="1"/>
+					<field name="deriOtro" colspan="1"/>
+			</group>
+			<newline/>
+
+			<label name="sintesis" xalign="0.0"/>
+			<newline/>
+			<field name="sintesis" xfill="1" yfill="1" xexpand="1" yexpand="1"/>
+			<newline/>
+
+			<group id="fechas" col="10">
+					<label name="fechaini" colspan="1"/>
+					<field name="fechaini" colspan="1"/>
+					<label name="fechaFin" colspan="1"/>
+					<field name="fechaFin" colspan="1"/>
+					<label name="asisTot" colspan="1"/>
+					<field name="asisTot" colspan="1"/>
+					<label name="inasisTot" colspan="1"/>
+					<field name="inasisTot" colspan="1"/>
+					<label name="grupal" colspan="1"/>
+					<field name="grupal" colspan="1"/>
+			</group>
+		</form>
+		]]>
+	</field>
+</record>
+
+<!-- Evento que activa las vistas -->
+<record model="ir.action.act_window" id="act_final_form">
+	<field name="name">Formulario Final</field>
+	<field name="res_model">cefiro.final</field>
+</record>
+
+<!-- Conexion entre el evento y la vista de arbol -->
+<record model="ir.action.act_window.view" id="act_final_form_view1">
+	<field name="sequence" eval="10"/>
+	<field name="view" ref="final_view_tree"/>
+	<field name="act_window" ref="act_final_form"/>
+</record>
+
+<!-- Conexion entre el evento y la vista de formulario -->
+<record model="ir.action.act_window.view" id="act_final_form_view2">
+	<field name="sequence" eval="20"/>
+	<field name="view" ref="final_view_form"/>
+	<field name="act_window" ref="act_final_form"/>
+</record>
+
+<!-- Menu -->
+<!--<menuitem parent="menu_hc" sequence="3" id="menu_final" icon="tryton-list" action="act_final_form"/>-->
+
+
+<!-- Cosas asociadas a la clase Sesion -->
+
+<!-- Vista de arbol -->
+<record model="ir.ui.view" id="sesion_view_tree">
+	<field name="model">cefiro.sesion</field>
+	<field name="type">tree</field>
+	<field name="arch" type="xml">
+		<![CDATA[
+		<tree string="sesion">
+			<field name="fecha"/>
+			<field name="asistencia"/>
+		</tree>
+		]]>
+	</field>
+</record>
+
+<!-- Vista de formulario -->
+<record model="ir.ui.view" id="sesion_view_form">
+	<field name="model">cefiro.sesion</field>
+	<field name="type">form</field>
+	<field name="arch" type="xml">
+		<![CDATA[
+		<form string="sesion">
+			<label name="fecha"/>
+			<field name="fecha"/>
+			<label name="paciente"/>
+			<field name="paciente"/>
+			<label name="asistencia"/>
+			<field name="asistencia"/>
+			<newline/>
+			<label name="comentarios"/>
+			<field name="comentarios" yfill="1" yexpand="1" colspan="8"/>
+		</form>
+		]]>
+	</field>
+</record>
+
+<!-- Evento que activa las vistas -->
+<record model="ir.action.act_window" id="act_sesion_form">
+	<field name="name">Informes de Sesión</field>
+	<field name="res_model">cefiro.sesion</field>
+</record>
+
+<!-- Conexion entre el evento y la vista de arbol -->
+<record model="ir.action.act_window.view" id="act_sesion_form_view1">
+	<field name="sequence" eval="10"/>
+	<field name="view" ref="sesion_view_tree"/>
+	<field name="act_window" ref="act_sesion_form"/>
+</record>
+
+<!-- Conexion entre el evento y la vista de formulario -->
+<record model="ir.action.act_window.view" id="act_sesion_form_view2">
+	<field name="sequence" eval="20"/>
+	<field name="view" ref="sesion_view_form"/>
+	<field name="act_window" ref="act_sesion_form"/>
+</record>
+
+<!-- Menu -->
+<!--<menuitem parent="menu_hc" sequence="2" id="menu_sesion" icon="tryton-list" action="act_sesion_form"/>-->
+
+
+	</data>
+</tryton>
+
+

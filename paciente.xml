@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- En este archivo están las distintas vistas posibles (según distintos actores) de un paciente -->
+
+<tryton>
+	<data>
+
+<!-- Vista para un Psicólogo-->
+
+<!-- Vista de arbol -->
+<record model="ir.ui.view" id="pacientepsi_view_tree">
+	<field name="model">cefiro.paciente</field>
+	<field name="type">tree</field>
+	<field name="arch" type="xml">
+		<![CDATA[
+		<tree string="pacientes">
+			<field name="identidad"/>
+			<field name="name"/>
+			<field name="cedula"/>
+			<field name="horarioPref"/>
+			<field name="psicologo"/>
+			<field name="consultas"/>
+			<field name="telefono"/>
+			<field name="celular"/>
+			<field name="lista"/>
+		</tree>
+		]]>
+	</field>
+</record>
+
+<!-- Vista de formulario -->
+<record model="ir.ui.view" id="pacientepsi_view_form">
+	<field name="model">cefiro.paciente</field>
+	<field name="type">form</field>
+	<field name="arch" type="xml">
+		<![CDATA[
+		<form string="paciente">
+
+		<notebook>
+			<page string="Datos de gestión" id="datosgestion">
+
+				<group string="Datos Básicos" colspan="8" id="basicos">
+					<label name="identidad"/>
+					<field name="identidad"/>
+					<newline/>
+					<label name="servicio"/>
+					<field name="servicio"/>
+				
+					<label name="name"/>
+					<field name="name"/>
+	
+					<label name="cedula"/>
+					<field name="cedula"/>
+
+					<label name="sexo"/>
+					<field name="sexo"/>
+
+					<label name="genero"/>
+					<field name="genero"/>
+					
+					<label name="generoEspecificado"/>
+					<field name="generoEspecificado"/>
+
+					<label name="lugarNacimiento"/>
+					<field name="lugarNacimiento"/>
+
+					<label name="nacimiento"/>
+					<field name="nacimiento"/>
+					
+					<label name="edad"/>
+					<field name="edad"/>
+					
+					<label name="telefono"/>
+					<field name="telefono"/>
+					<label name="celular"/>
+					<field name="celular"/>
+
+					<label name="etnia"/>
+					<field name="etnia"/>			
+				</group>
+
+				</page>
+			<page string="Datos Gestión II" id="datosgestionii">
+				<label name="motivo"/>
+				<field name="motivo"/>
+				<newline/>
+				<label name="psicologo"/>
+				<field name="psicologo"/>
+				<newline/>
+				<label name="observaciones"/>
+				<field name="observaciones"/>
+				<newline/>
+                <label name="consultas"/>
+                <field name="consultas"/>
+			</page>
+			<page string="Domicilio" id="domicilio">
+	    	  		<label name="calle"/>
+        			<field name="calle"/>
+	        	    <label name="esquina"/>
+        	        <field name="esquina"/>
+        	        <label name="barrio"/>
+        	        <field name="barrio"/>
+        	        <label name="nroPuerta"/>
+        	        <field name="nroPuerta"/>
+        	        <label name="apto"/>
+        	        <field name="apto"/>
+        	        <label name="departamento"/>
+        	        <field name="departamento"/>
+        	</page>
+            <page string="SAPPA" id="infosappap"> 
+                <field name="infosappa"/>
+            </page>
+
+			<page string="Datos clínicos" id="datosclinicos">
+				<label name="formularioInicial"/>
+				<field name="formularioInicial"/>
+				<newline/>
+				<label name="informesSesion"/>
+				<field name="informesSesion"/>
+				<newline/>
+				<label name="formularioFinal"/>
+				<field name="formularioFinal"/>
+			</page>
+
+                        <page string="Horarios y listas de espera" id="horalistasespera">
+                            <label name="horarioPref"/>
+                            <field name="horarioPref"/>
+                            <newline/>
+                            <label name="lista"/>
+                            <field name="lista" yfill="1"/>
+                        </page>
+
+		   </notebook>
+		</form>
+		]]>
+	</field>
+</record>
+
+<!-- Evento que activa las vistas -->
+<record model="ir.action.act_window" id="act_pacientepsi_form">
+	<field name="name">Pacientes</field>
+	<field name="res_model">cefiro.paciente</field>
+</record>
+
+<!-- Conexion entre el evento y la vista de arbol -->
+<record model="ir.action.act_window.view" id="act_pacientepsi_form_view1">
+	<field name="sequence" eval="10"/>
+	<field name="view" ref="pacientepsi_view_tree"/>
+	<field name="act_window" ref="act_pacientepsi_form"/>
+</record>
+
+<!-- Conexion entre el evento y la vista de formulario -->
+<record model="ir.action.act_window.view" id="act_pacientepsi_form_view2">
+	<field name="sequence" eval="20"/>
+	<field name="view" ref="pacientepsi_view_form"/>
+	<field name="act_window" ref="act_pacientepsi_form"/>
+</record>
+
+<!-- Menu -->
+<!--<menuitem parent="menu_cefiro" sequence="1" id="menu_pacientepsi" icon="cefiro-paciente" action="act_pacientepsi_form"/>-->
+
+
+
+<!-- Vista para un Gestiónico-->
+
+<!-- Vista de arbol -->
+<record model="ir.ui.view" id="pacienteges_view_tree">
+	<field name="model">cefiro.paciente</field>
+	<field name="type">tree</field>
+	<field name="arch" type="xml">
+		<![CDATA[
+		<tree string="pacientes">
+			<field name="identidad"/>
+			<field name="name"/>
+			<field name="cedula"/>
+			<field name="horarioPref"/>
+			<field name="psicologo"/>
+			<field name="consultas"/>
+			<field name="telefono"/>
+			<field name="celular"/>
+			<field name="lista"/>
+		</tree>
+		]]>
+	</field>
+</record>
+
+<!-- Vista de formulario -->
+<record model="ir.ui.view" id="pacienteges_view_form">
+	<field name="model">cefiro.paciente</field>
+	<field name="type">form</field>
+	<field name="arch" type="xml">
+		<![CDATA[
+		<form string="paciente">
+                      <notebook> 
+                        <page string="Datos Gestión" id="datosgestioni">
+							<group string="Datos Básicos" colspan="8" id="basicos">
+								<label name="identidad"/>
+								<field name="identidad"/>
+								<newline/>
+					
+								<label name="servicio"/>
+								<field name="servicio"/>
+				
+								<label name="name"/>
+								<field name="name"/>
+	
+								<label name="cedula"/>
+								<field name="cedula"/>
+
+								<label name="sexo"/>
+								<field name="sexo"/>
+
+								<label name="genero"/>
+								<field name="genero"/>
+					
+								<label name="generoEspecificado"/>
+								<field name="generoEspecificado"/>
+
+								<label name="lugarNacimiento"/>
+								<field name="lugarNacimiento"/>
+
+								<label name="nacimiento"/>
+								<field name="nacimiento"/>
+					
+								<label name="edad"/>
+								<field name="edad"/>
+					
+								<label name="telefono"/>
+								<field name="telefono"/>
+								<label name="celular"/>
+								<field name="celular"/>
+
+								<label name="etnia"/>
+								<field name="etnia"/>	
+
+							</group>
+                        </page>
+                        <page string="Datos Gestión II" id="datosgestioniidos">
+                                <label name="motivo"/>
+                                <field name="motivo"/>
+                                <newline/>
+                                <label name="psicologo"/>
+                                <field name="psicologo"/>
+                                <newline/>
+                                <label name="consultas"/>
+                                <field name="consultas"/>
+                                <newline/>
+                                <label name="observaciones"/>
+                                <field name="observaciones"/>
+                        </page>
+                    	<page string="Domicilio" id="domicilio">
+	    	              		<label name="calle"/>
+        	          			<field name="calle"/>
+	        	          		<label name="esquina"/>
+        	          			<field name="esquina"/>
+        	          			<label name="barrio"/>
+        	          			<field name="barrio"/>
+        	          			<label name="nroPuerta"/>
+        	          			<field name="nroPuerta"/>
+        	          			<label name="apto"/>
+        	          			<field name="apto"/>
+        	          			<label name="departamento"/>
+        	          			<field name="departamento"/>
+        	          	</page>
+                        <page string="SAPPA" id="sappad">
+                                <field name="infosappa"/>
+                        </page>	
+                        <page string="Horarios y listas de espera" id="horalistasespera">
+                            <label name="horarioPref"/>
+                            <field name="horarioPref"/>
+                            <newline/>
+                            <label name="lista"/>
+                            <field name="lista" yfill="1"/>
+                        </page>
+
+
+                   </notebook>
+		</form>
+		]]>
+	</field>
+</record>
+
+<!-- Evento que activa las vistas -->
+<record model="ir.action.act_window" id="act_pacienteges_form">
+	<field name="name">Pacientes</field>
+	<field name="res_model">cefiro.paciente</field>
+</record>
+
+<!-- Conexion entre el evento y la vista de arbol -->
+<record model="ir.action.act_window.view" id="act_pacienteges_form_view1">
+	<field name="sequence" eval="10"/>
+	<field name="view" ref="pacienteges_view_tree"/>
+	<field name="act_window" ref="act_pacienteges_form"/>
+</record>
+
+<!-- Conexion entre el evento y la vista de formulario -->
+<record model="ir.action.act_window.view" id="act_pacienteges_form_view2">
+	<field name="sequence" eval="20"/>
+	<field name="view" ref="pacienteges_view_form"/>
+	<field name="act_window" ref="act_pacienteges_form"/>
+</record>
+
+<!-- Menu -->
+<menuitem parent="menu_cefiro" sequence="1" id="menu_pacienteges" icon="cefiro-paciente" action="act_pacienteges_form"/>
+
+
+<!-- Vista para un Investigador-->
+
+<!-- Vista de arbol -->
+<record model="ir.ui.view" id="pacienteinv_view_tree">
+	<field name="model">cefiro.paciente</field>
+	<field name="type">tree</field>
+	<field name="arch" type="xml">
+		<![CDATA[
+		<tree string="historias">
+			<field name="identidad"/>
+			<field name="procesado_hc"/>
+		</tree>
+		]]>
+	</field>
+</record>
+
+<!-- Vista de formulario -->
+<record model="ir.ui.view" id="pacienteinv_view_form">
+	<field name="model">cefiro.paciente</field>
+	<field name="type">form</field>
+	<field name="arch" type="xml">
+		<![CDATA[
+		<form string="historia">
+			<label name="identidad"/>
+			<field name="identidad"/>
+			<label name="procesado_hc"/>
+			<field name="procesado_hc"/>
+			<newline/>
+			<label name="formularioInicial"/>
+			<field name="formularioInicial"/>
+			<newline/>
+			<label name="informesSesion"/>
+			<field name="informesSesion"/>
+			<newline/>
+			<label name="formularioFinal"/>
+			<field name="formularioFinal"/>
+		</form>
+		]]>
+	</field>
+</record>
+
+<!-- Evento que activa las vistas -->
+<record model="ir.action.act_window" id="act_pacienteinv_form">
+	<field name="name">Historias Clínicas</field>
+	<field name="res_model">cefiro.paciente</field>
+</record>
+
+<!-- Conexion entre el evento y la vista de arbol -->
+<record model="ir.action.act_window.view" id="act_pacienteinv_form_view1">
+	<field name="sequence" eval="10"/>
+	<field name="view" ref="pacienteinv_view_tree"/>
+	<field name="act_window" ref="act_pacienteinv_form"/>
+</record>
+
+<!-- Conexion entre el evento y la vista de formulario -->
+<record model="ir.action.act_window.view" id="act_pacienteinv_form_view2">
+	<field name="sequence" eval="20"/>
+	<field name="view" ref="pacienteinv_view_form"/>
+	<field name="act_window" ref="act_pacienteinv_form"/>
+</record>
+
+<!-- Menu -->
+<menuitem name="Historias Clínicas" parent="menu_cefiro" id="menu_hcinv"/>
+
+<menuitem name="Historias Clínicas" parent="menu_hcinv" sequence="1" id="menu_pacienteinv" icon="tryton-list" action="act_pacienteinv_form"/>
+
+<!-- Cosas asociadas a la clase InfoSAPPA -->
+
+<!-- Vista de arbol -->
+<record model="ir.ui.view" id="infosappa_view_tree">
+        <field name="model">cefiro.infosappa</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+                <![CDATA[
+                <tree string="infosappa">
+       	               <field name="convenioSAPPA"/>
+       	               <field name="lugarTrabajo"/>
+       	               <field name="funcionario"/>
+       	               <field name="fechaIngresoExpediente"/>
+       	               <field name="atencionMedica"/>
+       	               <field name="mutualista"/>
+        	
+               	       <field name="profExternoDerivacion"/>
+                       <field name="profExternoNombre"/>
+                       <field name="profExternoFecha"/>
+
+	                   <field name="form_OQ45T1"/>
+                       <field name="form_OQ45T2"/>
+		      		   <field name="form_EncuestaSatisfaccion"/>
+                       <field name="form_EcuestaSatPExtProfesional"/>
+                       <field name="form_EncuestaSatPExtPaciente"/>
+
+                       <field name="creacion"/>
+
+                </tree>
+                ]]>
+        </field>
+</record>
+
+<!-- Vista de formulario -->
+<record model="ir.ui.view" id="infosappa_view_form">
+        <field name="model">cefiro.infosappa</field>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+                <![CDATA[
+                <form string="infosappa">
+
+    	            <group string="SAPPA" colspan="4" id="sappa">
+        	                <label name="convenioSAPPA"/>
+        	                <field name="convenioSAPPA"/>
+        	                <label name="lugarTrabajo"/>
+        	                <field name="lugarTrabajo"/>
+        	        	<label name="funcionario"/>
+        	                <field name="funcionario"/>
+        	                <label name="fechaIngresoExpediente"/>
+        	                <field name="fechaIngresoExpediente"/>
+        	                <label name="atencionMedica"/>
+        	                <field name="atencionMedica"/>
+        	                <label name="mutualista"/>
+        	                <field name="mutualista"/>
+        	
+        		        <group string="Derivación a Profesional Externo" colspan="4" id="externos">
+	         	               <label name="profExternoDerivacion"/>
+	                       	       <field name="profExternoDerivacion"/>
+	                       	       <label name="profExternoNombre"/>
+                	       	       <field name="profExternoNombre"/>
+	                               <label name="profExternoFecha"/>
+	                               <field name="profExternoFecha"/>
+	                        </group>
+	        
+	                        <group string="Formularios Entregados" colspan="4" id="formularios">
+	                        	<label name="form_OQ45T1"/>
+	                        	<field name="form_OQ45T1"/>
+	                        	<label name="form_OQ45T2"/>
+	                        	<field name="form_OQ45T2"/>
+	                        	<label name="form_EncuestaSatisfaccion"/>
+	                        	<field name="form_EncuestaSatisfaccion"/>
+	                       		<label name="form_EcuestaSatPExtProfesional"/>
+	                       		<field name="form_EcuestaSatPExtProfesional"/>
+        	               		<label name="form_EncuestaSatPExtPaciente"/>
+	                       		<field name="form_EncuestaSatPExtPaciente"/>
+	                	</group>
+			   		</group>
+	            </form>
+	            ]]>
+	        </field>
+	</record>
+
+	<!-- Evento que activa las vistas -->
+	<record model="ir.action.act_window" id="act_infosappa_form">
+	        <field name="name">Información de SAPPA</field>
+	        <field name="res_model">cefiro.infosappa</field>
+	</record> 
+
+	<!-- Conexion entre el evento y la vista de arbol -->
+	<record model="ir.action.act_window.view" id="act_infosappa_form_view1">
+	        <field name="sequence" eval="10"/>
+	        <field name="view" ref="infosappa_view_tree"/>
+	        <field name="act_window" ref="act_infosappa_form"/>
+	</record>
+
+	<!-- Conexion entre el evento y la vista de formulario -->
+	<record model="ir.action.act_window.view" id="act_infosappa_form_view2">
+	        <field name="sequence" eval="20"/>
+	        <field name="view" ref="infosappa_view_form"/>
+	        <field name="act_window" ref="act_infosappa_form"/>
+	</record>
+
+	</data>
+</tryton>

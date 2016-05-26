@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tryton>
+	<data>
+
+	<!-- Cosas asociadas a la clase Formulario -->
+
+		<!-- Vista de formulario -->
+		<record model="ir.ui.view" id="formvt_view_form">
+			<field name="model">cefiro.formvt</field>
+			<field name="type">form</field>
+			<field name="arch" type="xml">
+				<![CDATA[
+				<form string="Vivienda y Trabajo">
+					<group string="Situación Familiar y Conyugal" id="conyugal">
+						<group id="conviveSolo">
+							<label name="conviveSolo" colspan="1"/>
+							<field name="conviveSolo" colspan="1"/>
+						</group>
+						<newline/>
+						<group string="¿Con quién convive?" id="convivencia"  xexpand="1" xfill="1" col="16"
+							states="{'invisible': 
+									Not(Equal(Eval('conviveSolo'),'no'))
+							}">
+							<label name="conviveMadre" colspan="1"/>
+							<field name="conviveMadre" colspan="1"/>
+							<label name="convivePadre" colspan="1"/>
+							<field name="convivePadre" colspan="1"/>
+							<label name="conviveMadrastra" colspan="1"/>
+							<field name="conviveMadrastra" colspan="1"/>
+							<label name="convivePadrastro" colspan="1"/>
+							<field name="convivePadrastro" colspan="1"/>
+							<label name="conviveHermanos" colspan="1"/>
+							<field name="conviveHermanos" colspan="1"/>
+							<label name="convivePareja" colspan="1"/>
+							<field name="convivePareja" colspan="1"/>
+							<label name="conviveHijos" colspan="1"/>
+							<field name="conviveHijos" colspan="1"/>
+							<label name="conviveOtros" colspan="1"/>
+							<field name="conviveOtros" colspan="1"/>
+						</group>
+						<newline/>
+						<group id="restovivytrab">
+							<label name="situacionCony"/>
+							<field name="situacionCony"/>
+							<label name="tipoVivienda"/>
+							<field name="tipoVivienda"/>
+						</group>
+					</group>
+
+					<newline/>
+
+					<group string="Vivienda" id="vivienda">
+						<label name="vivHabitaTot"/>
+						<field name="vivHabitaTot"/>
+						<label name="vivHabitaDor"/>
+						<field name="vivHabitaDor"/>
+						<label name="vivBanos"/>
+						<field name="vivBanos"/>
+						<label name="vivBanoComp"/>
+						<field name="vivBanoComp"/>
+						<label name="vivBanoTipo"/>
+						<field name="vivBanoTipo"/>
+						<newline/>
+						<label name="vivEnergiaElectrica"/>
+						<field name="vivEnergiaElectrica"/>
+						<label name="vivAguaPotable"/>
+						<field name="vivAguaPotable"/>
+						<newline/>
+						<label name="vivObs" xalign="0.0"/>
+						<field name="vivObs" colspan="8" yfill="1" yexpand="1"/>
+					</group>
+
+					<newline/>
+
+					<group string="Trabajo" id="trabajo" yfill="1">
+						<label name="trabSituacion"/>
+						<field name="trabSituacion"/>
+						<label name="trabTipoRel"/>
+						<field name="trabTipoRel"/>
+						<label name="trabMulti"/>
+						<field name="trabMulti"/>
+						<newline/>
+						<label name="trabHoras"/>
+						<field name="trabHoras"/>
+						<label name="trabHorasPrin"/>
+						<field name="trabHorasPrin"/>
+						<label name="trabInicio"/>
+						<field name="trabInicio"/>
+						<newline/>
+						<label name="trabInfantil"/>
+						<field name="trabInfantil"/>
+						<label name="trabJuvenil"/>
+						<field name="trabJuvenil"/>
+						<label name="trabLegal"/>
+						<field name="trabLegal"/>
+						<label name="trabInsalubre"/>
+						<field name="trabInsalubre"/>
+						<newline/>
+						<label name="trabObs" xalign="0.0"/>
+						<field name="trabObs" colspan="8" yfill="1" yexpand="1"/>
+					</group>
+
+					<newline/>
+
+					<group string="Situación Laboral Familiar" id="edufamilia" xexpand="1" xfill="1">
+						<label name="trabPadre"/>
+						<field name="trabPadre"/>
+						<label name="trabMadre"/>
+						<field name="trabMadre"/>
+						<label name="trabPareja"/>
+						<field name="trabPareja"/>
+
+					</group>
+	        	</form>
+	        	]]>
+	  	 	</field>
+		</record>
+
+<!-- formVivTrabajo_view_form Target -->
+
+
+	<!-- Vista de arbol -->
+	<record model="ir.ui.view" id="formvt_view_tree">
+        <field name="model">cefiro.formvt</field>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+                <![CDATA[
+                <tree string="formvt">
+					<field name="tipoVivienda"/>
+					<field name="conviveSolo"/>
+					<field name="situacionCony"/>
+					<field name="trabSituacion"/>
+                </tree>
+                ]]>
+        </field>
+	</record>
+	
+	<!-- Evento que activa las vistas -->
+	<record model="ir.action.act_window" id="act_formvt_form">
+	        <field name="name">Vivienda y trabajo</field>
+	        <field name="res_model">cefiro.formvt</field>
+	</record>
+
+	<!-- Conexion entre el evento y la vista de arbol -->
+	<record model="ir.action.act_window.view" id="act_formvt_form_view1">
+	        <field name="sequence" eval="10"/>
+	        <field name="view" ref="formvt_view_tree"/>
+	        <field name="act_window" ref="act_formvt_form"/>
+	</record>
+
+	<!-- Conexion entre el evento y la vista de formulario -->
+	<record model="ir.action.act_window.view" id="act_formvt_form_view2">
+	        <field name="sequence" eval="20"/>
+	        <field name="view" ref="formvt_view_form"/>
+	        <field name="act_window" ref="act_formvt_form"/>
+	</record>
+
+
+	</data>
+</tryton>

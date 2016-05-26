@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tryton>
+	<data>
+
+<!-- Cosas asociadas a la clase Perfil -->
+
+<!-- Vista de arbol -->
+<record model="ir.ui.view" id="perfil_view_tree">
+	<field name="model">cefiro.perfil</field>
+	<field name="type">tree</field>
+	<field name="arch" type="xml">
+		<![CDATA[
+		<tree string="perfiles">
+			<field name="user"/>
+		</tree>
+		]]>
+	</field>
+</record>
+
+<!-- Vista de formulario -->
+<record model="ir.ui.view" id="perfil_view_form">
+	<field name="model">cefiro.perfil</field>
+	<field name="type">form</field>
+	<field name="arch" type="xml">
+		<![CDATA[
+		<form string="perfil">
+			<notebook>
+			<page string="Datos generales" id="generalesDat">
+				<label name="perfiles"/>
+				<field name="perfiles"/>
+				<label name="perfilesEst"/>
+				<field name="perfilesEst"/>
+			</page>
+			<page string="Datos de usuario" id="usuarioDat">
+				<label name="user"/>
+				<field name="user"/>
+			</page>
+			</notebook>
+		</form>
+		]]>
+	</field>
+</record>
+
+<!-- Evento que activa las vistas -->
+<record model="ir.action.act_window" id="act_perfil_form">
+	<field name="name">Perfiles</field>
+	<field name="res_model">cefiro.perfil</field>
+</record>
+
+<!-- Conexion entre el evento y la vista de arbol -->
+<record model="ir.action.act_window.view" id="act_perfil_form_view1">
+	<field name="sequence" eval="10"/>
+	<field name="view" ref="perfil_view_tree"/>
+	<field name="act_window" ref="act_perfil_form"/>
+</record>
+
+<!-- Conexion entre el evento y la vista de formulario -->
+<record model="ir.action.act_window.view" id="act_perfil_form_view2">
+	<field name="sequence" eval="20"/>
+	<field name="view" ref="perfil_view_form"/>
+	<field name="act_window" ref="act_perfil_form"/>
+</record>
+
+<!-- Menu -->
+<menuitem parent="menu_cefiro" sequence="1" id="menu_perfil" icon="cefiro-freud2" action="act_perfil_form"/>
+
+<!--Creo el único perfil-->
+<record model="cefiro.perfil" id="perfilunico">
+	<field name="name">Perfil</field>
+</record>
+
+<!-- Relaciono con el registro de usuario -->
+        <record model="ir.action.act_window" id="act_regusuario_form1">
+            <field name="name">Datos de Usuario</field>
+            <field name="res_model">res.user</field>
+            <field name="domain">[('login', '=', Eval('user'))]</field>
+        </record>
+        <record model="ir.action.keyword" id="act_open_regusuario_keyword1">
+            <field name="keyword">form_relate</field>
+            <field name="model">cefiro.perfil,-1</field>
+            <field name="action" ref="act_regusuario_form1"/>
+        </record>
+
+
+	</data>
+</tryton>
+
