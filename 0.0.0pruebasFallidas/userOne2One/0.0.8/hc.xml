@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tryton>
+	<data>
+
+<!-- El menú principal -->
+	<menuitem name="Historias Clínicas" parent="menu_cefiro" id="menu_hc"/>
+
+
+	</data>
+</tryton>
+
+
