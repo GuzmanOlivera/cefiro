@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tryton>
+	<data>
+
+<!-- Cosas asociadas a la clase Lista -->
+
+<!-- Vista de arbol -->
+<record model="ir.ui.view" id="lista_view_tree">
+	<field name="model">cefiro.lista</field>
+	<field name="type">tree</field>
+	<field name="arch" type="xml">
+		<![CDATA[
+		<tree string="listas">
+			<field name="name"/>
+			<field name="pacientes"/>
+		</tree>
+		]]>
+	</field>
+</record>
+
+<!-- Vista de formulario -->
+<record model="ir.ui.view" id="lista_view_form">
+	<field name="model">cefiro.lista</field>
+	<field name="type">form</field>
+	<field name="arch" type="xml">
+		<![CDATA[
+		<form string="lista">
+			<group string="Lista de Espera" colspan="4" id="nombre_espera">
+				<field name="name"/>
+			</group>
+			<newline/>
+			<group rowspan="40" id="pacientes_espera" yfill="1" yexpand="1">
+					<field name="pacientes" yfill="1" yexpand="1"/>
+			</group>
+		</form>
+		]]>
+	</field>
+</record>
+
+<!-- Evento que activa las vistas -->
+<record model="ir.action.act_window" id="act_lista_form">
+	<field name="name">Listas de Espera</field>
+	<field name="res_model">cefiro.lista</field>
+</record>
+
+<!-- Conexion entre el evento y la vista de arbol -->
+<record model="ir.action.act_window.view" id="act_lista_form_view1">
+	<field name="sequence" eval="10"/>
+	<field name="view" ref="lista_view_tree"/>
+	<field name="act_window" ref="act_lista_form"/>
+</record>
+
+<!-- Conexion entre el evento y la vista de formulario -->
+<record model="ir.action.act_window.view" id="act_lista_form_view2">
+	<field name="sequence" eval="20"/>
+	<field name="view" ref="lista_view_form"/>
+	<field name="act_window" ref="act_lista_form"/>
+</record>
+
+<!-- Menu -->
+<menuitem parent="menu_agenda" sequence="1" id="menu_lista" icon="tryton-list" action="act_lista_form"/>
+
+	</data>
+</tryton>
+
+

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tryton>
+	<data>
+
+        <record model="cefiro.consultorio" id="consultorio1">
+            <field name="name">Consultorio 1</field>
+        </record>
+
+        <record model="cefiro.consultorio" id="consultorio3">
+            <field name="name">Consultorio 3</field>
+        </record>
+
+        <record model="cefiro.consultorio" id="salaNinos">
+            <field name="name">Sala de Act. con Niños</field>
+        </record>
+
+        <record model="cefiro.consultorio" id="consultorio6">
+            <field name="name">Consultorio 6</field>
+        </record>
+
+        <record model="cefiro.consultorio" id="consultorio8">
+            <field name="name">Consultorio 8</field>
+        </record>
+
+        <record model="cefiro.consultorio" id="consultorio8a">
+            <field name="name">Consultorio 8A</field>
+        </record>
+
+        <record model="cefiro.consultorio" id="consultorio9">
+            <field name="name">Consultorio 9</field>
+        </record>
+
+        <record model="cefiro.consultorio" id="consultorio9a">
+            <field name="name">Consultorio 9A</field>
+        </record>
+
+        <record model="cefiro.consultorio" id="consultorio10">
+            <field name="name">Consultorio 10</field>
+        </record>
+
+        <record model="cefiro.consultorio" id="consultorio11">
+            <field name="name">Consultorio 11</field>
+        </record>
+
+	</data>
+</tryton>
+
+

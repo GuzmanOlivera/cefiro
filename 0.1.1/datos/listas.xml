@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tryton>
+	<data>
+
+        <record model="cefiro.lista" id="lista_ninos">
+            <field name="name">Niños</field>
+        </record>
+
+        <record model="cefiro.lista" id="lista_discapacidad">
+            <field name="name">Discapacidad</field>
+        </record>
+
+        <record model="cefiro.lista" id="lista_vejez">
+            <field name="name">Vejez</field>
+        </record>
+
+        <record model="cefiro.lista" id="lista_diagnostico">
+            <field name="name">Diagnóstico</field>
+        </record>
+
+        <record model="cefiro.lista" id="lista_corredores">
+            <field name="name">Corredores</field>
+        </record>
+
+	</data>
+</tryton>
+
+
