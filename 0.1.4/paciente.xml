@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- En este archivo están las distintas vistas posibles (según distintos actores) de un paciente -->
+
+<tryton>
+	<data>
+
+<!-- Vista para un Psicólogo-->
+
+<!-- Vista de arbol -->
+<record model="ir.ui.view" id="pacientepsi_view_tree">
+	<field name="model">cefiro.paciente</field>
+	<field name="type">tree</field>
+	<field name="arch" type="xml">
+		<![CDATA[
+		<tree string="pacientes">
+			<field name="name"/>
+			<field name="cedula"/>
+			<field name="horarioPref"/>
+			<field name="psicologo"/>
+			<field name="consultas"/>
+			<field name="telefono"/>
+			<field name="celular"/>
+			<field name="lista"/>
+		</tree>
+		]]>
+	</field>
+</record>
+
+<!-- Vista de formulario -->
+<record model="ir.ui.view" id="pacientepsi_view_form">
+	<field name="model">cefiro.paciente</field>
+	<field name="type">form</field>
+	<field name="arch" type="xml">
+		<![CDATA[
+		<form string="paciente">
+
+		<notebook>
+			<page string="Datos de gestión" id="datosgestion">
+
+			<group string="Datos Básicos" colspan="4" id="basicos">
+				<label name="name"/>
+				<field name="name"/>
+				<label name="cedula"/>
+				<field name="cedula"/>
+				<label name="sexo"/>
+				<field name="sexo"/>
+				<label name="nacimiento"/>
+				<field name="nacimiento"/>
+				<label name="edad"/>
+				<field name="edad"/>
+				<label name="telefono"/>
+				<field name="telefono"/>
+				<label name="celular"/>
+				<field name="celular"/>
+			</group>
+
+			<newline/>
+			<group string="Otros Datos" colspan="4" id="otros">
+				<label name="motivo"/>
+				<field name="motivo"/>
+				<label name="psicologo"/>
+				<field name="psicologo"/>
+				<label name="consultas"/>
+				<field name="consultas"/>
+				<label name="observaciones"/>
+				<field name="observaciones"/>
+			</group>
+
+			<newline/>			
+				<group string="CIC-P" colspan="4" id="cicp">
+				<label name="horarioPref"/>
+				<field name="horarioPref"/>
+				<label name="lista"/>
+				<field name="lista"/>
+			</group>
+
+			<newline/>
+			<group string="SAPPA" colspan="4" id="sappa">
+				<label name="convenioSAPPA"/>
+				<field name="convenioSAPPA"/>
+				<label name="lugarTrabajo"/>
+				<field name="lugarTrabajo"/>
+				<label name="funcionario"/>
+				<field name="funcionario"/>
+				<label name="fechaIngresoExpediente"/>
+				<field name="fechaIngresoExpediente"/>
+				<label name="atencionMedica"/>
+				<field name="atencionMedica"/>
+				<label name="mutualista"/>
+				<field name="mutualista"/>
+
+			<group string="Derivación a Profesional Externo" colspan="4" id="externos">
+				<label name="profExternoDerivacion"/>
+				<field name="profExternoDerivacion"/>
+				<label name="profExternoNombre"/>
+				<field name="profExternoNombre"/>
+				<label name="profExternoFecha"/>
+				<field name="profExternoFecha"/>
+			</group>
+
+			<group string="Formularios Entregados" colspan="4" id="formularios">
+				<label name="form_OQ45T1"/>
+				<field name="form_OQ45T1"/>
+				<label name="form_OQ45T2"/>
+				<field name="form_OQ45T2"/>
+				<label name="form_EncuestaSatisfaccion"/>
+				<field name="form_EncuestaSatisfaccion"/>
+				<label name="form_EcuestaSatPExtProfesional"/>
+				<field name="form_EcuestaSatPExtProfesional"/>
+				<label name="form_EncuestaSatPExtPaciente"/>
+				<field name="form_EncuestaSatPExtPaciente"/>
+                    	</group>
+			</group>
+			</page>
+
+			<page string="Datos clínicos" id="datosclinicos">
+				<label name="formularioInicial"/>
+				<field name="formularioInicial"/>
+				<newline/>
+				<label name="informesSesion"/>
+				<field name="informesSesion"/>
+				<newline/>
+				<label name="formularioFinal"/>
+				<field name="formularioFinal"/>
+			</page>
+		</notebook>
+		</form>
+		]]>
+	</field>
+</record>
+
+<!-- Evento que activa las vistas -->
+<record model="ir.action.act_window" id="act_pacientepsi_form">
+	<field name="name">Pacientes</field>
+	<field name="res_model">cefiro.paciente</field>
+</record>
+
+<!-- Conexion entre el evento y la vista de arbol -->
+<record model="ir.action.act_window.view" id="act_pacientepsi_form_view1">
+	<field name="sequence" eval="10"/>
+	<field name="view" ref="pacientepsi_view_tree"/>
+	<field name="act_window" ref="act_pacientepsi_form"/>
+</record>
+
+<!-- Conexion entre el evento y la vista de formulario -->
+<record model="ir.action.act_window.view" id="act_pacientepsi_form_view2">
+	<field name="sequence" eval="20"/>
+	<field name="view" ref="pacientepsi_view_form"/>
+	<field name="act_window" ref="act_pacientepsi_form"/>
+</record>
+
+<!-- Menu -->
+<menuitem parent="menu_cefiro" sequence="1" id="menu_pacientepsi" icon="cefiro-paciente" action="act_pacientepsi_form"/>
+
+
+
+<!-- Vista para un Gestiónico-->
+
+<!-- Vista de arbol -->
+<record model="ir.ui.view" id="pacienteges_view_tree">
+	<field name="model">cefiro.paciente</field>
+	<field name="type">tree</field>
+	<field name="arch" type="xml">
+		<![CDATA[
+		<tree string="pacientes">
+			<field name="name"/>
+			<field name="cedula"/>
+			<field name="horarioPref"/>
+			<field name="psicologo"/>
+			<field name="consultas"/>
+			<field name="telefono"/>
+			<field name="celular"/>
+			<field name="lista"/>
+		</tree>
+		]]>
+	</field>
+</record>
+
+<!-- Vista de formulario -->
+<record model="ir.ui.view" id="pacienteges_view_form">
+	<field name="model">cefiro.paciente</field>
+	<field name="type">form</field>
+	<field name="arch" type="xml">
+		<![CDATA[
+		<form string="paciente">
+
+			<group string="Datos Básicos" colspan="4" id="basicos">
+				<label name="name"/>
+				<field name="name"/>
+				<label name="cedula"/>
+				<field name="cedula"/>
+				<label name="sexo"/>
+				<field name="sexo"/>
+				<label name="nacimiento"/>
+				<field name="nacimiento"/>
+				<label name="edad"/>
+				<field name="edad"/>
+				<label name="telefono"/>
+				<field name="telefono"/>
+				<label name="celular"/>
+				<field name="celular"/>
+			</group>
+
+			<newline/>
+			<group string="Otros Datos" colspan="4" id="otros">
+				<label name="motivo"/>
+				<field name="motivo"/>
+				<label name="psicologo"/>
+				<field name="psicologo"/>
+				<label name="consultas"/>
+				<field name="consultas"/>
+				<label name="observaciones"/>
+				<field name="observaciones"/>
+			</group>
+
+			<newline/>			
+				<group string="CIC-P" colspan="4" id="cicp">
+				<label name="horarioPref"/>
+				<field name="horarioPref"/>
+				<label name="lista"/>
+				<field name="lista"/>
+			</group>
+
+			<newline/>
+			<group string="SAPPA" colspan="4" id="sappa">
+				<label name="convenioSAPPA"/>
+				<field name="convenioSAPPA"/>
+				<label name="lugarTrabajo"/>
+				<field name="lugarTrabajo"/>
+				<label name="funcionario"/>
+				<field name="funcionario"/>
+				<label name="fechaIngresoExpediente"/>
+				<field name="fechaIngresoExpediente"/>
+				<label name="atencionMedica"/>
+				<field name="atencionMedica"/>
+				<label name="mutualista"/>
+				<field name="mutualista"/>
+
+			<group string="Derivación a Profesional Externo" colspan="4" id="externos">
+				<label name="profExternoDerivacion"/>
+				<field name="profExternoDerivacion"/>
+				<label name="profExternoNombre"/>
+				<field name="profExternoNombre"/>
+				<label name="profExternoFecha"/>
+				<field name="profExternoFecha"/>
+			</group>
+
+			<group string="Formularios Entregados" colspan="4" id="formularios">
+				<label name="form_OQ45T1"/>
+				<field name="form_OQ45T1"/>
+				<label name="form_OQ45T2"/>
+				<field name="form_OQ45T2"/>
+				<label name="form_EncuestaSatisfaccion"/>
+				<field name="form_EncuestaSatisfaccion"/>
+				<label name="form_EcuestaSatPExtProfesional"/>
+				<field name="form_EcuestaSatPExtProfesional"/>
+				<label name="form_EncuestaSatPExtPaciente"/>
+				<field name="form_EncuestaSatPExtPaciente"/>
+                    	</group>
+			</group>
+		</form>
+		]]>
+	</field>
+</record>
+
+<!-- Evento que activa las vistas -->
+<record model="ir.action.act_window" id="act_pacienteges_form">
+	<field name="name">Pacientes</field>
+	<field name="res_model">cefiro.paciente</field>
+</record>
+
+<!-- Conexion entre el evento y la vista de arbol -->
+<record model="ir.action.act_window.view" id="act_pacienteges_form_view1">
+	<field name="sequence" eval="10"/>
+	<field name="view" ref="pacienteges_view_tree"/>
+	<field name="act_window" ref="act_pacienteges_form"/>
+</record>
+
+<!-- Conexion entre el evento y la vista de formulario -->
+<record model="ir.action.act_window.view" id="act_pacienteges_form_view2">
+	<field name="sequence" eval="20"/>
+	<field name="view" ref="pacienteges_view_form"/>
+	<field name="act_window" ref="act_pacienteges_form"/>
+</record>
+
+<!-- Menu -->
+<menuitem parent="menu_cefiro" sequence="1" id="menu_pacienteges" icon="cefiro-paciente" action="act_pacienteges_form"/>
+
+
+<!-- Vista para un Investigador-->
+
+<!-- Vista de arbol -->
+<record model="ir.ui.view" id="pacienteinv_view_tree">
+	<field name="model">cefiro.paciente</field>
+	<field name="type">tree</field>
+	<field name="arch" type="xml">
+		<![CDATA[
+		<tree string="pacientes">
+			<field name="name"/>
+		</tree>
+		]]>
+	</field>
+</record>
+
+<!-- Vista de formulario -->
+<record model="ir.ui.view" id="pacienteinv_view_form">
+	<field name="model">cefiro.paciente</field>
+	<field name="type">form</field>
+	<field name="arch" type="xml">
+		<![CDATA[
+		<form string="paciente">
+
+		<notebook>
+			<page string="Datos de gestión" id="datosgestion">
+
+			<group string="Datos Básicos" colspan="4" id="basicos">
+				<label name="name"/>
+				<field name="name"/>
+				<label name="cedula"/>
+				<field name="cedula"/>
+				<label name="sexo"/>
+				<field name="sexo"/>
+				<label name="nacimiento"/>
+				<field name="nacimiento"/>
+				<label name="edad"/>
+				<field name="edad"/>
+				<label name="telefono"/>
+				<field name="telefono"/>
+				<label name="celular"/>
+				<field name="celular"/>
+			</group>
+
+			<newline/>
+			<group string="Otros Datos" colspan="4" id="otros">
+				<label name="motivo"/>
+				<field name="motivo"/>
+				<label name="psicologo"/>
+				<field name="psicologo"/>
+				<label name="consultas"/>
+				<field name="consultas"/>
+				<label name="observaciones"/>
+				<field name="observaciones"/>
+			</group>
+
+			<newline/>			
+				<group string="CIC-P" colspan="4" id="cicp">
+				<label name="horarioPref"/>
+				<field name="horarioPref"/>
+				<label name="lista"/>
+				<field name="lista"/>
+			</group>
+
+			<newline/>
+			<group string="SAPPA" colspan="4" id="sappa">
+				<label name="convenioSAPPA"/>
+				<field name="convenioSAPPA"/>
+				<label name="lugarTrabajo"/>
+				<field name="lugarTrabajo"/>
+				<label name="funcionario"/>
+				<field name="funcionario"/>
+				<label name="fechaIngresoExpediente"/>
+				<field name="fechaIngresoExpediente"/>
+				<label name="atencionMedica"/>
+				<field name="atencionMedica"/>
+				<label name="mutualista"/>
+				<field name="mutualista"/>
+
+			<group string="Derivación a Profesional Externo" colspan="4" id="externos">
+				<label name="profExternoDerivacion"/>
+				<field name="profExternoDerivacion"/>
+				<label name="profExternoNombre"/>
+				<field name="profExternoNombre"/>
+				<label name="profExternoFecha"/>
+				<field name="profExternoFecha"/>
+			</group>
+
+			<group string="Formularios Entregados" colspan="4" id="formularios">
+				<label name="form_OQ45T1"/>
+				<field name="form_OQ45T1"/>
+				<label name="form_OQ45T2"/>
+				<field name="form_OQ45T2"/>
+				<label name="form_EncuestaSatisfaccion"/>
+				<field name="form_EncuestaSatisfaccion"/>
+				<label name="form_EcuestaSatPExtProfesional"/>
+				<field name="form_EcuestaSatPExtProfesional"/>
+				<label name="form_EncuestaSatPExtPaciente"/>
+				<field name="form_EncuestaSatPExtPaciente"/>
+                    	</group>
+			</group>
+			</page>
+
+			<page string="Datos clínicos" id="datosclinicos">
+				<label name="formularioInicial"/>
+				<field name="formularioInicial"/>
+				<newline/>
+				<label name="informesSesion"/>
+				<field name="informesSesion"/>
+				<newline/>
+				<label name="formularioFinal"/>
+				<field name="formularioFinal"/>
+			</page>
+		</notebook>
+		</form>
+		]]>
+	</field>
+</record>
+
+<!-- Evento que activa las vistas -->
+<record model="ir.action.act_window" id="act_pacienteinv_form">
+	<field name="name">Pacientes</field>
+	<field name="res_model">cefiro.paciente</field>
+</record>
+
+<!-- Conexion entre el evento y la vista de arbol -->
+<record model="ir.action.act_window.view" id="act_pacienteinv_form_view1">
+	<field name="sequence" eval="10"/>
+	<field name="view" ref="pacienteinv_view_tree"/>
+	<field name="act_window" ref="act_pacienteinv_form"/>
+</record>
+
+<!-- Conexion entre el evento y la vista de formulario -->
+<record model="ir.action.act_window.view" id="act_pacienteinv_form_view2">
+	<field name="sequence" eval="20"/>
+	<field name="view" ref="pacienteinv_view_form"/>
+	<field name="act_window" ref="act_pacienteinv_form"/>
+</record>
+
+<!-- Menu -->
+<menuitem parent="menu_cefiro" sequence="1" id="menu_pacienteinv" icon="cefiro-paciente" action="act_pacienteinv_form"/>
+
+	</data>
+</tryton>
+

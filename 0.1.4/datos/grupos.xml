@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tryton>
+    <data>
+        
+      
+<!-- Grupos -->
+	<!-- Gestión -->
+        <record model="res.group" id="grupo_gestion">
+            <field name="name">Gestión</field>
+        </record>
+
+	<!-- Investigadores -->
+        <record model="res.group" id="grupo_investigadores">
+            <field name="name">Investigadores</field>
+        </record>
+
+	<!-- Psicólogos -->
+        <record model="res.group" id="grupo_psicologos">
+            <field name="name">Psicólogos</field>
+        </record>
+
+<!-- Asigno "admin" a los grupos -->      
+        <record model="res.user-res.group" id="admin_en_gestion">
+            <field name="user" ref="res.user_admin"/>
+            <field name="group" ref="grupo_gestion"/>
+        </record>
+
+        <record model="res.user-res.group" id="admin_en_psicologos">
+            <field name="user" ref="res.user_admin"/>
+            <field name="group" ref="grupo_psicologos"/>
+        </record>
+
+        <record model="res.user-res.group" id="admin_en_investigadores">
+            <field name="user" ref="res.user_admin"/>
+            <field name="group" ref="grupo_investigadores"/>
+        </record>
+
+<!-- Acceso a Menús -->
+
+	<!-- Gestión -->        
+        <record model="ir.ui.menu-res.group" id="menu_cefiro_en_gestion">
+            <field name="menu" ref="menu_cefiro"/>
+            <field name="group" ref="grupo_gestion"/>
+        </record>
+
+        <record model="ir.ui.menu-res.group" id="menu_personal_en_gestion">
+            <field name="menu" ref="menu_personal"/>
+            <field name="group" ref="grupo_gestion"/>
+        </record>
+
+        <record model="ir.ui.menu-res.group" id="menu_pacienteges_en_gestion">
+            <field name="menu" ref="menu_pacienteges"/>
+            <field name="group" ref="grupo_gestion"/>
+        </record>
+
+        <record model="ir.ui.menu-res.group" id="menu_psicologo_en_gestion">
+            <field name="menu" ref="menu_psicologo"/>
+            <field name="group" ref="grupo_gestion"/>
+        </record>
+
+        <record model="ir.ui.menu-res.group" id="menu_estudiante_en_gestion">
+            <field name="menu" ref="menu_estudiante"/>
+            <field name="group" ref="grupo_gestion"/>
+        </record>
+
+        <record model="ir.ui.menu-res.group" id="menu_agenda_en_gestion">
+            <field name="menu" ref="menu_agenda"/>
+            <field name="group" ref="grupo_gestion"/>
+        </record>
+
+        <record model="ir.ui.menu-res.group" id="menu_consultas_en_gestion">
+            <field name="menu" ref="menu_consultas"/>
+            <field name="group" ref="grupo_gestion"/>
+        </record>
+
+        <record model="ir.ui.menu-res.group" id="menu_consultorio_en_gestion">
+            <field name="menu" ref="menu_consultorio"/>
+            <field name="group" ref="grupo_gestion"/>
+        </record>
+
+        <record model="ir.ui.menu-res.group" id="menu_listas_en_gestion">
+            <field name="menu" ref="menu_lista"/>
+            <field name="group" ref="grupo_gestion"/>
+        </record>
+
+        <record model="ir.ui.menu-res.group" id="menu_administration_en_gestion">
+            <field name="menu" ref="ir.menu_administration"/>
+            <field name="group" ref="grupo_gestion"/>
+        </record>
+
+        <record model="ir.ui.menu-res.group" id="menu_usuarios_en_gestion">
+            <field name="menu" ref="res.menu_res"/>
+            <field name="group" ref="grupo_gestion"/>
+        </record>
+
+        <record model="ir.ui.menu-res.group" id="menu_usuarios_en_gestion2">
+            <field name="menu" ref="res.menu_user_form"/>
+            <field name="group" ref="grupo_gestion"/>
+        </record>
+
+	<!-- Psicólogos -->        
+        <record model="ir.ui.menu-res.group" id="menu_cefiro_en_psicologos">
+            <field name="menu" ref="menu_cefiro"/>
+            <field name="group" ref="grupo_psicologos"/>
+        </record>
+
+        <record model="ir.ui.menu-res.group" id="menu_personal_en_psicologos">
+            <field name="menu" ref="menu_personal"/>
+            <field name="group" ref="grupo_psicologos"/>
+        </record>
+
+        <record model="ir.ui.menu-res.group" id="menu_pacientepsi_en_gestion">
+            <field name="menu" ref="menu_pacientepsi"/>
+            <field name="group" ref="grupo_psicologos"/>
+        </record>
+
+        <record model="ir.ui.menu-res.group" id="menu_psicologo_en_psicologos">
+            <field name="menu" ref="menu_psicologo"/>
+            <field name="group" ref="grupo_psicologos"/>
+        </record>
+
+        <record model="ir.ui.menu-res.group" id="menu_estudiante_en_psicologos">
+            <field name="menu" ref="menu_estudiante"/>
+            <field name="group" ref="grupo_psicologos"/>
+        </record>
+
+        <record model="ir.ui.menu-res.group" id="menu_hc_en_psicologos">
+            <field name="menu" ref="menu_hc"/>
+            <field name="group" ref="grupo_psicologos"/>
+        </record>
+
+	<!-- Investigadores -->
+        <record model="ir.ui.menu-res.group" id="menu_cefiro_en_investigadores">
+            <field name="menu" ref="menu_cefiro"/>
+            <field name="group" ref="grupo_investigadores"/>
+        </record>
+
+        <record model="ir.ui.menu-res.group" id="menu_hc_en_investigadores">
+            <field name="menu" ref="menu_hc"/>
+            <field name="group" ref="grupo_investigadores"/>
+        </record>
+
+<!-- Acceso a Modelos -->
+
+	<!-- Grupo Gestión -->
+        <record model="ir.model.access" id="acceso_gestion_persona">
+            <field name="model" search="[('model', '=', 'cefiro.persona')]"/>
+            <field name="group" ref="grupo_gestion"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="True"/>
+        </record>
+
+        <record model="ir.model.access" id="acceso_gestion_psicologo">
+            <field name="model" search="[('model', '=', 'cefiro.psicologo')]"/>
+            <field name="group" ref="grupo_gestion"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="True"/>
+        </record>
+
+        <record model="ir.model.access" id="acceso_gestion_paciente">
+            <field name="model" search="[('model', '=', 'cefiro.paciente')]"/>
+            <field name="group" ref="grupo_gestion"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="True"/>
+        </record>
+
+        <record model="ir.model.access" id="acceso_gestion_estudiante">
+            <field name="model" search="[('model', '=', 'cefiro.estudiante')]"/>
+            <field name="group" ref="grupo_gestion"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="True"/>
+        </record>
+
+        <record model="ir.model.access" id="acceso_gestion_consultorio">
+            <field name="model" search="[('model', '=', 'cefiro.consultorio')]"/>
+            <field name="group" ref="grupo_gestion"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="True"/>
+        </record>
+
+        <record model="ir.model.access" id="acceso_gestion_consulta">
+            <field name="model" search="[('model', '=', 'cefiro.consulta')]"/>
+            <field name="group" ref="grupo_gestion"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="True"/>
+        </record>
+
+        <record model="ir.model.access" id="acceso_gestion_encuentro">
+            <field name="model" search="[('model', '=', 'cefiro.encuentro')]"/>
+            <field name="group" ref="grupo_gestion"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="True"/>
+        </record>
+
+        <record model="ir.model.access" id="acceso_gestion_encuentropsi">
+            <field name="model" search="[('model', '=', 'cefiro.encuentropsi')]"/>
+            <field name="group" ref="grupo_gestion"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="True"/>
+        </record>
+
+        <record model="ir.model.access" id="acceso_gestion_encuentroest">
+            <field name="model" search="[('model', '=', 'cefiro.encuentroest')]"/>
+            <field name="group" ref="grupo_gestion"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="True"/>
+        </record>
+
+        <record model="ir.model.access" id="acceso_gestion_lista">
+            <field name="model" search="[('model', '=', 'cefiro.lista')]"/>
+            <field name="group" ref="grupo_gestion"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+
+        <record model="ir.model.access" id="acceso_gestion_user">
+            <field name="model" search="[('model', '=', 'res.user')]"/>
+            <field name="group" ref="grupo_gestion"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="True"/>
+        </record>
+
+        <record model="ir.model.access" id="acceso_gestion_formulario">
+            <field name="model" search="[('model', '=', 'cefiro.formulario')]"/>
+            <field name="group" ref="grupo_gestion"/>
+            <field name="perm_read" eval="False"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+
+        <record model="ir.model.access" id="acceso_gestion_sesion">
+            <field name="model" search="[('model', '=', 'cefiro.sesion')]"/>
+            <field name="group" ref="grupo_gestion"/>
+            <field name="perm_read" eval="False"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+
+        <record model="ir.model.access" id="acceso_gestion_final">
+            <field name="model" search="[('model', '=', 'cefiro.final')]"/>
+            <field name="group" ref="grupo_gestion"/>
+            <field name="perm_read" eval="False"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+
+	<!-- Grupo Psicólogos -->
+        <record model="ir.model.access" id="acceso_psicologos_persona">
+            <field name="model" search="[('model', '=', 'cefiro.persona')]"/>
+            <field name="group" ref="grupo_psicologos"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+
+        <record model="ir.model.access" id="acceso_psicologos_psicologo">
+            <field name="model" search="[('model', '=', 'cefiro.psicologo')]"/>
+            <field name="group" ref="grupo_psicologos"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+
+        <record model="ir.model.access" id="acceso_psicologos_paciente">
+            <field name="model" search="[('model', '=', 'cefiro.paciente')]"/>
+            <field name="group" ref="grupo_psicologos"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+
+        <record model="ir.model.access" id="acceso_psicologos_estudiante">
+            <field name="model" search="[('model', '=', 'cefiro.estudiante')]"/>
+            <field name="group" ref="grupo_psicologos"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+
+        <record model="ir.model.access" id="acceso_psicologos_consultorio">
+            <field name="model" search="[('model', '=', 'cefiro.consultorio')]"/>
+            <field name="group" ref="grupo_psicologos"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+
+        <record model="ir.model.access" id="acceso_psicologos_consulta">
+            <field name="model" search="[('model', '=', 'cefiro.consulta')]"/>
+            <field name="group" ref="grupo_psicologos"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+
+        <record model="ir.model.access" id="acceso_psicologos_encuentro">
+            <field name="model" search="[('model', '=', 'cefiro.encuentro')]"/>
+            <field name="group" ref="grupo_psicologos"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+
+        <record model="ir.model.access" id="acceso_psicologos_encuentropsi">
+            <field name="model" search="[('model', '=', 'cefiro.encuentropsi')]"/>
+            <field name="group" ref="grupo_psicologos"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+
+        <record model="ir.model.access" id="acceso_psicologos_encuentroest">
+            <field name="model" search="[('model', '=', 'cefiro.encuentroest')]"/>
+            <field name="group" ref="grupo_psicologos"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+
+        <record model="ir.model.access" id="acceso_psicologos_lista">
+            <field name="model" search="[('model', '=', 'cefiro.lista')]"/>
+            <field name="group" ref="grupo_psicologos"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+
+        <record model="ir.model.access" id="acceso_psicologos_formulario">
+            <field name="model" search="[('model', '=', 'cefiro.formulario')]"/>
+            <field name="group" ref="grupo_psicologos"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="True"/>
+        </record>
+
+        <record model="ir.model.access" id="acceso_psicologos_sesion">
+            <field name="model" search="[('model', '=', 'cefiro.sesion')]"/>
+            <field name="group" ref="grupo_psicologos"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="True"/>
+        </record>
+
+        <record model="ir.model.access" id="acceso_psicologos_final">
+            <field name="model" search="[('model', '=', 'cefiro.final')]"/>
+            <field name="group" ref="grupo_psicologos"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="True"/>
+        </record>
+
+	<!-- Grupo Investigadores -->
+        <record model="ir.model.access" id="acceso_investigadores_formulario">
+            <field name="model" search="[('model', '=', 'cefiro.formulario')]"/>
+            <field name="group" ref="grupo_investigadores"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+
+        <record model="ir.model.access" id="acceso_investigadores_sesion">
+            <field name="model" search="[('model', '=', 'cefiro.sesion')]"/>
+            <field name="group" ref="grupo_investigadores"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+
+        <record model="ir.model.access" id="acceso_investigadores_final">
+            <field name="model" search="[('model', '=', 'cefiro.final')]"/>
+            <field name="group" ref="grupo_investigadores"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+
+    </data>
+</tryton>
